@@ -1,1 +1,181 @@
+:root {
+  --bg: #BFBBB4;
+  --card: #A68A7D;
+  --accent: #C86A4B;
+  --text: #1c1c1e;
+}
 
+body.dark {
+  --bg: #1a1817;
+  --card: #2a2421;
+  --accent: #E07A5F;
+  --text: #F2F2F0;
+}
+
+body {
+  margin: 0;
+  font-family: "Arial Rounded MT", "SF Pro Rounded", "Nunito", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+}
+
+.app {
+  max-width: 430px;
+  margin: auto;
+  padding-bottom: 90px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.wordmark {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn svg {
+  width: 18px;
+  fill: currentColor;
+}
+
+.icon-btn:active {
+  transform: scale(0.9);
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--card);
+}
+
+/* WALLET */
+.wallet-card {
+  margin: 16px;
+  padding: 22px;
+  background: var(--card);
+  border-radius: 22px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.wallet-card h1 {
+  font-size: 28px;
+}
+
+.wallet-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.pill {
+  flex: 1;
+  padding: 12px;
+  border-radius: 999px;
+  border: none;
+}
+
+.primary {
+  background: var(--accent);
+  color: white;
+}
+
+.secondary {
+  background: rgba(255,255,255,0.2);
+}
+
+/* SERVICES */
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px;
+}
+
+.service {
+  width: calc(33.33% - 10px);
+  background: var(--card);
+  padding: 14px 10px;
+  border-radius: 18px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.service svg {
+  width: 22px;
+  margin-bottom: 6px;
+}
+
+/* TX */
+.tx {
+  background: rgba(0,0,0,0.05);
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+}
+
+/* NAV */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  justify-content: space-around;
+  background: var(--card);
+  padding: 12px 0;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 11px;
+}
+
+.nav-item svg {
+  width: 20px;
+}
+
+.nav-item.active {
+  color: var(--accent);
+}
+
+/* SKELETON */
+#skeleton div {
+  height: 50px;
+  background: linear-gradient(90deg,#ddd,#eee,#ddd);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  0% {background-position:-200px}
+  100% {background-position:200px}
+}
+
+.hidden {
+  display: none;
+}
