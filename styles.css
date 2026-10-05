@@ -1,11 +1,17 @@
 :root {
-  --background: #F3EFE6;
-  --surface: #FFFDF8;
-  --surface-soft: #EDE8DD;
-  --text: #111111;
-  --muted: #77736B;
-  --border: #E2DDD2;
-  --blue: #5BB9E8;
+  /* Veyra 60 / 30 / 10 */
+  --background: #F8FAF7;
+  --surface: #FFFFFF;
+  --surface-soft: #EEF2EF;
+
+  --charcoal: #111827;
+  --text: #111827;
+  --muted: #6B7280;
+
+  --emerald: #10B981;
+  --emerald-dark: #0A8F66;
+
+  --border: #E5E7EB;
   --white: #FFFFFF;
 }
 
@@ -42,7 +48,9 @@ button {
 }
 
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .topbar {
   display: flex;
@@ -53,8 +61,9 @@ button {
 
 .brand {
   font-size: 25px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -1px;
+  color: var(--charcoal);
 }
 
 .greeting {
@@ -80,27 +89,27 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 12px rgba(0,0,0,.04);
+  box-shadow: 0 3px 14px rgba(17, 24, 39, 0.06);
 }
 
 .round-button svg {
   width: 19px;
   height: 19px;
   fill: none;
-  stroke: #111;
-  stroke-width: 1.8;
+  stroke: var(--charcoal);
+  stroke-width: 1.9;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .profile-button {
-  background: var(--blue);
-  color: #111;
+  background: var(--charcoal);
+  color: var(--white);
 }
 
 .profile-button span {
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .notification-dot {
@@ -110,18 +119,20 @@ button {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #111;
+  background: var(--emerald);
 }
 
 
-/* BALANCE */
+/* =========================
+   BALANCE CARD
+========================= */
 
 .balance-card {
-  background: var(--blue);
-  color: #111;
+  background: var(--charcoal);
+  color: var(--white);
   border-radius: 27px;
-  padding: 24px;
-  box-shadow: 0 14px 35px rgba(0,0,0,.10);
+  padding: 25px;
+  box-shadow: 0 15px 35px rgba(17, 24, 39, 0.15);
 }
 
 .balance-header {
@@ -132,7 +143,7 @@ button {
 
 .balance-header span {
   font-size: 13px;
-  color: rgba(17,17,17,.65);
+  color: #AEB5C2;
   font-weight: 800;
 }
 
@@ -145,8 +156,8 @@ button {
   width: 21px;
   height: 21px;
   fill: none;
-  stroke: #111;
-  stroke-width: 1.7;
+  stroke: var(--white);
+  stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -155,7 +166,7 @@ button {
   margin: 17px 0 23px;
   font-size: 36px;
   line-height: 1;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -1.8px;
 }
 
@@ -170,18 +181,18 @@ button {
   height: 48px;
   border-radius: 15px;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .primary-button {
-  background: #FFFDF8;
-  color: #111;
+  background: var(--emerald);
+  color: var(--white);
 }
 
 .secondary-button {
-  background: rgba(255,255,255,.28);
-  color: #111;
-  border: 1px solid rgba(17,17,17,.12);
+  background: #202938;
+  color: var(--white);
+  border: 1px solid #303A4A;
 }
 
 .plus {
@@ -190,7 +201,9 @@ button {
 }
 
 
-/* SECTIONS */
+/* =========================
+   SECTIONS
+========================= */
 
 .section {
   margin-top: 31px;
@@ -203,12 +216,15 @@ button {
 .section-heading h2 {
   margin: 0;
   font-size: 19px;
-  font-weight: 800;
-  letter-spacing: -.5px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: var(--charcoal);
 }
 
 
-/* SERVICES */
+/* =========================
+   SERVICES
+========================= */
 
 .service-grid {
   display: grid;
@@ -222,23 +238,29 @@ button {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 21px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+
   text-align: left;
-  transition: transform .15s ease, box-shadow .15s ease;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .service-card:active {
-  transform: scale(.97);
+  transform: scale(0.97);
 }
 
 .service-icon {
   width: 42px;
   height: 42px;
   border-radius: 13px;
-  background: var(--surface-soft);
+  background: #E7F7F1;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -247,20 +269,24 @@ button {
 .service-icon svg {
   width: 21px;
   height: 21px;
+
   fill: none;
-  stroke: var(--blue);
-  stroke-width: 1.8;
+  stroke: var(--emerald);
+  stroke-width: 1.9;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .service-card > span:last-child {
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 900;
+  color: var(--charcoal);
 }
 
 
-/* ACTIVITY */
+/* =========================
+   ACTIVITY
+========================= */
 
 .activity-heading {
   display: flex;
@@ -270,9 +296,9 @@ button {
 
 .activity-heading button {
   background: transparent;
-  color: var(--muted);
+  color: var(--emerald-dark);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .activity-list {
@@ -285,6 +311,7 @@ button {
 .activity {
   min-height: 76px;
   padding: 14px 15px;
+
   display: flex;
   align-items: center;
   gap: 12px;
@@ -299,7 +326,8 @@ button {
   height: 40px;
   flex: 0 0 40px;
   border-radius: 13px;
-  background: var(--surface-soft);
+  background: #E7F7F1;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -308,9 +336,10 @@ button {
 .activity-icon svg {
   width: 18px;
   height: 18px;
+
   fill: none;
-  stroke: var(--blue);
-  stroke-width: 1.8;
+  stroke: var(--emerald);
+  stroke-width: 1.9;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -323,7 +352,8 @@ button {
 .activity-info strong {
   display: block;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 900;
+  color: var(--charcoal);
 }
 
 .activity-info span {
@@ -336,86 +366,109 @@ button {
 
 .amount {
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 900;
   white-space: nowrap;
 }
 
-.negative,
+.negative {
+  color: var(--charcoal);
+}
+
 .positive {
-  color: #111;
+  color: var(--emerald-dark);
 }
 
 
-/* BOTTOM NAVIGATION */
+/* =========================
+   BOTTOM NAVIGATION
+========================= */
 
 .bottom-nav {
   position: fixed;
   z-index: 20;
+
   left: 50%;
   bottom: 12px;
+
   transform: translateX(-50%);
+
   width: min(420px, calc(100% - 24px));
   height: 70px;
+
   padding: 8px 6px;
-  background: rgba(255,253,248,.95);
+
+  background: rgba(255, 255, 255, 0.96);
+
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+
   border: 1px solid var(--border);
   border-radius: 24px;
+
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  box-shadow: 0 10px 35px rgba(0,0,0,.09);
+
+  box-shadow: 0 12px 35px rgba(17, 24, 39, 0.10);
 }
 
 .nav-item {
   background: transparent;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   gap: 5px;
+
   border-radius: 17px;
 }
 
 .nav-item svg {
   width: 19px;
   height: 19px;
+
   fill: none;
-  stroke: var(--blue);
-  stroke-width: 1.8;
+  stroke: var(--emerald);
+  stroke-width: 1.9;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .nav-item span {
   font-size: 10px;
-  font-weight: 800;
-  color: var(--blue);
+  font-weight: 900;
+  color: var(--emerald);
 }
 
 .nav-item.active {
-  background: var(--blue);
+  background: #E7F7F1;
 }
 
 .nav-item.active svg {
-  stroke: #111;
+  stroke: var(--emerald-dark);
 }
 
 .nav-item.active span {
-  color: #111;
+  color: var(--emerald-dark);
 }
 
 
-/* TAP FEEDBACK */
+/* =========================
+   TAP FEEDBACK
+========================= */
 
 button:active {
-  transform: scale(.96);
+  transform: scale(0.96);
 }
 
 
-/* MOBILE */
+/* =========================
+   SMALL PHONES
+========================= */
 
 @media (max-width: 380px) {
+
   .app {
     padding-left: 16px;
     padding-right: 16px;
@@ -432,10 +485,14 @@ button:active {
 }
 
 
-/* LARGER SCREENS */
+/* =========================
+   LARGER SCREENS
+========================= */
 
 @media (min-width: 700px) {
+
   body {
     padding: 30px 0;
   }
+
 }
