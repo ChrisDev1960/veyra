@@ -1,12 +1,12 @@
 :root {
-  --background: #f5f5f3;
-  --surface: #ffffff;
-  --surface-soft: #eeeeeb;
+  --background: #F3EFE6;
+  --surface: #FFFDF8;
+  --surface-soft: #EDE8DD;
   --text: #111111;
-  --muted: #777773;
-  --border: #e4e4df;
-  --black: #111111;
-  --white: #ffffff;
+  --muted: #77736B;
+  --border: #E2DDD2;
+  --blue: #5BB9E8;
+  --white: #FFFFFF;
 }
 
 * {
@@ -61,7 +61,7 @@ button {
   margin-top: 5px;
   color: var(--muted);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .top-actions {
@@ -94,8 +94,8 @@ button {
 }
 
 .profile-button {
-  background: #111;
-  color: #fff;
+  background: var(--blue);
+  color: #111;
 }
 
 .profile-button span {
@@ -117,11 +117,11 @@ button {
 /* BALANCE */
 
 .balance-card {
-  background: var(--black);
-  color: var(--white);
+  background: var(--blue);
+  color: #111;
   border-radius: 27px;
   padding: 24px;
-  box-shadow: 0 14px 35px rgba(0,0,0,.12);
+  box-shadow: 0 14px 35px rgba(0,0,0,.10);
 }
 
 .balance-header {
@@ -132,8 +132,8 @@ button {
 
 .balance-header span {
   font-size: 13px;
-  color: #bdbdbd;
-  font-weight: 700;
+  color: rgba(17,17,17,.65);
+  font-weight: 800;
 }
 
 .eye-button {
@@ -145,7 +145,7 @@ button {
   width: 21px;
   height: 21px;
   fill: none;
-  stroke: #fff;
+  stroke: #111;
   stroke-width: 1.7;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -174,14 +174,14 @@ button {
 }
 
 .primary-button {
-  background: #fff;
+  background: #FFFDF8;
   color: #111;
 }
 
 .secondary-button {
-  background: #292929;
-  color: #fff;
-  border: 1px solid #3b3b3b;
+  background: rgba(255,255,255,.28);
+  color: #111;
+  border: 1px solid rgba(17,17,17,.12);
 }
 
 .plus {
@@ -248,7 +248,7 @@ button {
   width: 21px;
   height: 21px;
   fill: none;
-  stroke: #111;
+  stroke: var(--blue);
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -270,9 +270,9 @@ button {
 
 .activity-heading button {
   background: transparent;
-  color: #666;
+  color: var(--muted);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .activity-list {
@@ -309,7 +309,7 @@ button {
   width: 18px;
   height: 18px;
   fill: none;
-  stroke: #111;
+  stroke: var(--blue);
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -340,16 +340,13 @@ button {
   white-space: nowrap;
 }
 
-.negative {
-  color: #222;
-}
-
+.negative,
 .positive {
   color: #111;
 }
 
 
-/* BOTTOM NAV */
+/* BOTTOM NAVIGATION */
 
 .bottom-nav {
   position: fixed;
@@ -360,14 +357,14 @@ button {
   width: min(420px, calc(100% - 24px));
   height: 70px;
   padding: 8px 6px;
-  background: rgba(255,255,255,.94);
+  background: rgba(255,253,248,.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid #deded9;
+  border: 1px solid var(--border);
   border-radius: 24px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  box-shadow: 0 10px 35px rgba(0,0,0,.10);
+  box-shadow: 0 10px 35px rgba(0,0,0,.09);
 }
 
 .nav-item {
@@ -384,7 +381,7 @@ button {
   width: 19px;
   height: 19px;
   fill: none;
-  stroke: #777;
+  stroke: var(--blue);
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -392,20 +389,20 @@ button {
 
 .nav-item span {
   font-size: 10px;
-  font-weight: 700;
-  color: #777;
+  font-weight: 800;
+  color: var(--blue);
 }
 
 .nav-item.active {
-  background: #111;
+  background: var(--blue);
 }
 
 .nav-item.active svg {
-  stroke: #fff;
+  stroke: #111;
 }
 
 .nav-item.active span {
-  color: #fff;
+  color: #111;
 }
 
 
@@ -415,12 +412,30 @@ button:active {
   transform: scale(.96);
 }
 
+
+/* MOBILE */
+
+@media (max-width: 380px) {
+  .app {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .balance {
+    font-size: 32px;
+  }
+
+  .service-card {
+    min-height: 108px;
+    padding: 15px;
+  }
+}
+
+
+/* LARGER SCREENS */
+
 @media (min-width: 700px) {
   body {
     padding: 30px 0;
-  }
-
-  .app {
-    background: var(--background);
   }
 }
