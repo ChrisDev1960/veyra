@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veyra</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
+<body class="light">
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="wordmark">Veyra</div>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+        🌙
+      </button>
+
+      <button class="icon-btn" aria-label="Notifications">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6V11a6 6 0 10-12 0v5l-2 2h16l-2-2z"/>
+        </svg>
+        <span class="dot"></span>
+      </button>
+
+      <div class="avatar" aria-label="Profile"></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- WALLET -->
+    <section class="wallet-card">
+      <div class="wallet-top">
+        <span>Available Balance</span>
+        <button id="toggleBalance" aria-label="Toggle balance visibility">👁</button>
+      </div>
+
+      <h1 id="balance">₦ 128,400</h1>
+
+      <div class="wallet-actions">
+        <button class="pill primary">Add Money</button>
+        <button class="pill secondary">Withdraw</button>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services"></section>
+
+    <!-- TRANSACTIONS -->
+    <section class="transactions">
+      <h3>Recent Activity</h3>
+
+      <div id="skeleton"></div>
+      <div id="tx-list" class="hidden"></div>
+    </section>
+
+  </main>
+
+  <!-- STATES -->
+  <div id="stateModal" class="hidden"></div>
+
+  <!-- NAV -->
+  <nav class="bottom-nav">
+    <div class="nav-item active">
+      <svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>
+      <span>Home</span>
+    </div>
+
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24"><path d="M2 7h20v10H2z"/></svg>
+      <span>Wallet</span>
+    </div>
+
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>
+      <span>Orders</span>
+    </div>
+
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2l4 8H8l4-8zM2 22l10-6 10 6H2z"/></svg>
+      <span>Referral</span>
+    </div>
+
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4 4-6 8-6s8 2 8 6"/></svg>
+      <span>Profile</span>
+    </div>
+  </nav>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
