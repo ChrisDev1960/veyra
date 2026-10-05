@@ -1,95 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f5f3">
   <title>Veyra</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="light">
+<body>
 
 <div class="app">
 
   <!-- HEADER -->
-  <header class="header">
-    <div class="wordmark">Veyra</div>
+  <header class="topbar">
+    <div>
+      <div class="brand">Veyra</div>
+      <div class="greeting">Good evening, Ikenna</div>
+    </div>
 
-    <div class="header-actions">
-      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
-        🌙
-      </button>
-
-      <button class="icon-btn" aria-label="Notifications">
+    <div class="top-actions">
+      <button class="round-button" aria-label="Notifications">
         <svg viewBox="0 0 24 24">
-          <path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6V11a6 6 0 10-12 0v5l-2 2h16l-2-2z"/>
+          <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+          <path d="M10 21h4"/>
         </svg>
-        <span class="dot"></span>
+        <span class="notification-dot"></span>
       </button>
 
-      <div class="avatar" aria-label="Profile"></div>
+      <button class="profile-button" aria-label="Profile">
+        <span>IE</span>
+      </button>
     </div>
   </header>
 
+
   <main>
 
-    <!-- WALLET -->
-    <section class="wallet-card">
-      <div class="wallet-top">
-        <span>Available Balance</span>
-        <button id="toggleBalance" aria-label="Toggle balance visibility">👁</button>
+    <!-- BALANCE -->
+    <section class="balance-card">
+
+      <div class="balance-header">
+        <span>Available balance</span>
+
+        <button id="balanceToggle" class="eye-button" aria-label="Hide balance">
+          <svg viewBox="0 0 24 24">
+            <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/>
+            <circle cx="12" cy="12" r="2.5"/>
+          </svg>
+        </button>
       </div>
 
-      <h1 id="balance">₦ 128,400</h1>
+      <div id="balance" class="balance">₦128,400</div>
 
-      <div class="wallet-actions">
-        <button class="pill primary">Add Money</button>
-        <button class="pill secondary">Withdraw</button>
+      <div class="balance-actions">
+        <button class="primary-button">
+          <span class="plus">+</span>
+          Add money
+        </button>
+
+        <button class="secondary-button">
+          Withdraw
+        </button>
       </div>
+
     </section>
 
+
     <!-- SERVICES -->
-    <section class="services" id="services"></section>
+    <section class="section">
 
-    <!-- TRANSACTIONS -->
-    <section class="transactions">
-      <h3>Recent Activity</h3>
+      <div class="section-heading">
+        <h2>Services</h2>
+      </div>
 
-      <div id="skeleton"></div>
-      <div id="tx-list" class="hidden"></div>
+      <div class="service-grid">
+
+        <button class="service-card">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M7 3h10a2 2 0 0 1 2 2v14H5V5a2 2 0 0 1 2-2Z"/>
+              <path d="M9 7h6M9 11h6M9 15h3"/>
+            </svg>
+          </span>
+          <span>Data</span>
+        </button>
+
+        <button class="service-card">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M7 3h10v18H7z"/>
+              <path d="M10 6h4M10 18h4"/>
+            </svg>
+          </span>
+          <span>Airtime</span>
+        </button>
+
+        <button class="service-card">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 9h18M5 9v9h14V9M4 18h16"/>
+              <path d="M7 6h10"/>
+            </svg>
+          </span>
+          <span>Betting</span>
+        </button>
+
+        <button class="service-card">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="M7 16h4M14 16h3"/>
+            </svg>
+          </span>
+          <span>TV</span>
+        </button>
+
+        <button class="service-card">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3v18M7 7h8.5a3 3 0 0 1 0 6H8.5a3 3 0 0 0 0 6H17"/>
+            </svg>
+          </span>
+          <span>Loans</span>
+        </button>
+
+        <button class="service-card">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="6" width="18" height="13" rx="2"/>
+              <path d="M3 10h18M16 14h2"/>
+            </svg>
+          </span>
+          <span>Wallet</span>
+        </button>
+
+        <button class="service-card referral-card">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="8" cy="8" r="3"/>
+              <circle cx="16" cy="16" r="3"/>
+              <path d="m10.5 10.5 3 3"/>
+            </svg>
+          </span>
+          <span>Referral</span>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- RECENT ACTIVITY -->
+    <section class="section activity-section">
+
+      <div class="section-heading activity-heading">
+        <h2>Recent activity</h2>
+        <button>See all</button>
+      </div>
+
+      <div class="activity-list">
+
+        <div class="activity">
+          <div class="activity-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M7 3h10a2 2 0 0 1 2 2v14H5V5a2 2 0 0 1 2-2Z"/>
+            </svg>
+          </div>
+
+          <div class="activity-info">
+            <strong>MTN Data</strong>
+            <span>Today · 4:12 PM</span>
+          </div>
+
+          <strong class="amount negative">−₦2,500</strong>
+        </div>
+
+
+        <div class="activity">
+          <div class="activity-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5v14"/>
+            </svg>
+          </div>
+
+          <div class="activity-info">
+            <strong>Wallet funding</strong>
+            <span>Today · 2:30 PM</span>
+          </div>
+
+          <strong class="amount positive">+₦20,000</strong>
+        </div>
+
+
+        <div class="activity">
+          <div class="activity-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 8h16M4 16h16M7 5v14"/>
+            </svg>
+          </div>
+
+          <div class="activity-info">
+            <strong>Bet9ja funding</strong>
+            <span>Yesterday · 8:21 PM</span>
+          </div>
+
+          <strong class="amount negative">−₦5,000</strong>
+        </div>
+
+      </div>
+
     </section>
 
   </main>
 
-  <!-- STATES -->
-  <div id="stateModal" class="hidden"></div>
 
-  <!-- NAV -->
+  <!-- BOTTOM NAV -->
   <nav class="bottom-nav">
-    <div class="nav-item active">
-      <svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>
+
+    <button class="nav-item active">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 10.5 12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5h-5v-6h-5v6h-5A1.5 1.5 0 0 1 3 19.5z"/>
+      </svg>
       <span>Home</span>
-    </div>
+    </button>
 
-    <div class="nav-item">
-      <svg viewBox="0 0 24 24"><path d="M2 7h20v10H2z"/></svg>
+    <button class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="M3 10h18"/>
+      </svg>
       <span>Wallet</span>
-    </div>
+    </button>
 
-    <div class="nav-item">
-      <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>
+    <button class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <path d="M6 3h12v18H6z"/>
+        <path d="M9 7h6M9 11h6M9 15h4"/>
+      </svg>
       <span>Orders</span>
-    </div>
+    </button>
 
-    <div class="nav-item">
-      <svg viewBox="0 0 24 24"><path d="M12 2l4 8H8l4-8zM2 22l10-6 10 6H2z"/></svg>
+    <button class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <circle cx="8" cy="8" r="3"/>
+        <circle cx="16" cy="16" r="3"/>
+        <path d="m10.5 10.5 3 3"/>
+      </svg>
       <span>Referral</span>
-    </div>
+    </button>
 
-    <div class="nav-item">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4 4-6 8-6s8 2 8 6"/></svg>
+    <button class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="3"/>
+        <path d="M5 21c0-4 3-6 7-6s7 2 7 6"/>
+      </svg>
       <span>Profile</span>
-    </div>
+    </button>
+
   </nav>
 
 </div>
