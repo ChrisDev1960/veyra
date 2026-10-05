@@ -1,3 +1,12 @@
+const SUPABASE_URL = "https://kwjfqevarxogvammijeo.supabase.co/rest/v1/profiles
+";
+const SUPABASE_ANON_KEY = "sb_publishable_OsKDW7bcZeR47RTTRIHehQ_cVhut_2J
+";
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
 const balance = document.getElementById("balance");
 const balanceToggle = document.getElementById("balanceToggle");
 
