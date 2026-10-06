@@ -309,6 +309,33 @@ logoutButton.addEventListener("click", async () => {
     return;
   }
 
+  const forgotPasswordButton = document.getElementById("forgotPasswordButton");
+
+forgotPasswordButton.addEventListener("click", async () => {
+  const email = document.getElementById("loginEmail").value.trim();
+
+  if (!email) {
+    loginMessage.textContent = "Please enter your email address first.";
+    loginMessage.style.display = "block";
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+    redirectTo: "https://chrisdev1960.github.io/veyra/"
+  });
+
+  if (error) {
+    loginMessage.textContent =
+      "Unable to send password reset email. Please try again.";
+    loginMessage.style.display = "block";
+    return;
+  }
+
+  loginMessage.textContent =
+    "Password reset link sent. Please check your email.";
+  loginMessage.style.display = "block";
+});
+
   document.querySelector(".app").style.display = "none";
   loginScreen.style.display = "flex";
   registerScreen.style.display = "none";
