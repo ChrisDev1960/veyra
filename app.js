@@ -324,12 +324,15 @@ forgotPasswordButton.addEventListener("click", async () => {
     redirectTo: "https://chrisdev1960.github.io/veyra/"
   });
 
-  if (error) {
-    loginMessage.textContent =
-      "Unable to send password reset email. Please try again.";
-    loginMessage.style.display = "block";
-    return;
-  }
+ if (error) {
+  console.error("Password reset error:", error);
+
+  loginMessage.textContent =
+    error.message || "Unable to send password reset email. Please try again.";
+
+  loginMessage.style.display = "block";
+  return;
+}
 
   loginMessage.textContent =
     "Password reset link sent. Please check your email.";
