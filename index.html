@@ -10,6 +10,118 @@
 </head>
 
 <body>
+  
+  <!-- AUTH / REGISTRATION SCREEN -->
+<section id="registerScreen" class="auth-screen">
+
+  <div class="auth-card">
+
+    <div class="auth-brand">Veyra</div>
+    <p class="auth-motto">Intelligence, Refined.</p>
+
+    <h1>Create your account</h1>
+    <p class="auth-subtitle">
+      Create your Veyra account to get started.
+    </p>
+
+    <form id="registerForm">
+
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          autocomplete="given-name"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          autocomplete="family-name"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          autocomplete="username"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          autocomplete="email"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          autocomplete="new-password"
+          required
+        >
+        <small>Minimum 8 characters, 1 uppercase letter and 1 number.</small>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          autocomplete="new-password"
+          required
+        >
+      </div>
+
+      <label class="terms-row">
+        <input
+          type="checkbox"
+          id="terms"
+          name="terms"
+          required
+        >
+        <span>
+          I agree to Veyra's Terms and Conditions and confirm that I am at
+          least 16 years old.
+        </span>
+      </label>
+
+      <p id="registerMessage" class="auth-message"></p>
+
+      <button type="submit" class="auth-submit">
+        Create account
+      </button>
+
+    </form>
+
+    <p class="auth-login-link">
+      Already have an account?
+      <button type="button" id="showLoginButton">Log in</button>
+    </p>
+
+  </div>
+
+</section>
 
 <div class="app">
 
