@@ -248,3 +248,41 @@ showRegisterButton.addEventListener("click", () => {
   loginScreen.style.display = "none";
   registerScreen.style.display = "flex";
 });
+
+const loginForm = document.getElementById("loginForm");
+const loginMessage = document.getElementById("loginMessage");
+
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
+
+  loginMessage.style.display = "none";
+  loginMessage.textContent = "";
+
+  const loginButton = loginForm.querySelector(".auth-submit");
+  loginButton.disabled = true;
+  loginButton.textContent = "Logging in...";
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    loginMessage.textContent =
+      "Incorrect email or password. Please try again.";
+    loginMessage.style.display = "block";
+
+    loginButton.disabled = false;
+    loginButton.textContent = "Log in";
+    return;
+  }
+
+  loginButton.disabled = false;
+  loginButton.textContent = "Log in";
+
+  loginScreen.style.display = "none";
+  document.querySelector(".app").style.display = "block";
+});
