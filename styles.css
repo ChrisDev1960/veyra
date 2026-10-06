@@ -496,3 +496,158 @@ button:active {
   }
 
 }
+
+/* ==============================
+   AUTH / REGISTRATION SCREEN
+   ============================== */
+
+.auth-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #f8faf7;
+  overflow-y: auto;
+  padding: 32px 20px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 10px 0 40px;
+}
+
+.auth-brand {
+  font-size: 32px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -1px;
+}
+
+.auth-motto {
+  margin: 4px 0 34px;
+  color: #10b981;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.auth-card h1 {
+  margin: 0 0 8px;
+  color: #111827;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.auth-subtitle {
+  margin: 0 0 28px;
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+}
+
+.form-group small {
+  display: block;
+  margin-top: 7px;
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.terms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 6px 0 20px;
+  color: #4b5563;
+  font-size: 13px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.terms-row input {
+  width: 17px;
+  height: 17px;
+  margin: 1px 0 0;
+  flex-shrink: 0;
+  accent-color: #10b981;
+}
+
+.auth-message {
+  display: none;
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.auth-submit {
+  width: 100%;
+  border: none;
+  border-radius: 13px;
+  padding: 15px;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.auth-submit:active {
+  transform: scale(0.98);
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-login-link {
+  margin: 22px 0 0;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.auth-login-link button {
+  border: none;
+  background: none;
+  padding: 0;
+  color: #10b981;
+  font-size: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
