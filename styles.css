@@ -650,3 +650,30 @@ button:active {
   font-weight: 700;
   cursor: pointer;
 }
+
+/* ==============================
+   AUTH SUCCESS MESSAGE
+   ============================== */
+
+.auth-message.success {
+  display: block;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.auth-message.success::before {
+  content: "✓";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  vertical-align: -2px;
+}
