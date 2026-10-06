@@ -286,3 +286,15 @@ loginForm.addEventListener("submit", async (event) => {
   loginScreen.style.display = "none";
   document.querySelector(".app").style.display = "block";
 });
+
+supabaseClient.auth.getSession().then(({ data }) => {
+  if (data.session) {
+    registerScreen.style.display = "none";
+    loginScreen.style.display = "none";
+    document.querySelector(".app").style.display = "block";
+  } else {
+    registerScreen.style.display = "flex";
+    loginScreen.style.display = "none";
+    document.querySelector(".app").style.display = "none";
+  }
+});
