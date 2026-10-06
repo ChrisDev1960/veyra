@@ -298,3 +298,17 @@ supabaseClient.auth.getSession().then(({ data }) => {
     document.querySelector(".app").style.display = "none";
   }
 });
+
+const logoutButton = document.getElementById("logoutButton");
+
+logoutButton.addEventListener("click", async () => {
+  const { error } = await supabaseClient.auth.signOut();
+
+  if (error) {
+    alert("Unable to log out. Please try again.");
+    return;
+  }
+
+  document.querySelector(".app").style.display = "none";
+  loginScreen.style.display = "flex";
+  registerScreen.style.display = "none";
