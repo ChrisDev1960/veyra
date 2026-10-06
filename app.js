@@ -232,3 +232,19 @@ if (existingUsername && existingUsername.length > 0) {
   registerMessage.style.display = "block";
 }
 });
+
+const registerScreen = document.getElementById("registerScreen");
+const loginScreen = document.getElementById("loginScreen");
+
+const showLoginButton = document.getElementById("showLoginButton");
+const showRegisterButton = document.getElementById("showRegisterButton");
+
+showLoginButton.addEventListener("click", () => {
+  registerScreen.style.display = "none";
+  loginScreen.style.display = "flex";
+});
+
+showRegisterButton.addEventListener("click", () => {
+  loginScreen.style.display = "none";
+  registerScreen.style.display = "flex";
+});
