@@ -163,6 +163,27 @@ registerForm.addEventListener("submit", async (event) => {
     return;
   }
 
+  const { data: existingUsername, error: usernameError } =
+  await supabaseClient
+    .from("profile")
+    .select("id")
+    .ilike("username", username)
+    .limit(1);
+
+if (usernameError) {
+  registerMessage.textContent =
+    "We couldn't verify the username right now. Please try again.";
+  registerMessage.style.display = "block";
+  return;
+}
+
+if (existingUsername && existingUsername.length > 0) {
+  registerMessage.textContent =
+    "This username already exists. Please choose another.";
+  registerMessage.style.display = "block";
+  return;
+}
+
   submitButton.disabled = true;
   submitButton.textContent = "Creating account...";
 
