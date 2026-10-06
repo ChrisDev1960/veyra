@@ -47,6 +47,66 @@ document.querySelectorAll("button").forEach(button => {
 
 const registerForm = document.getElementById("registerForm");
 const registerMessage = document.getElementById("registerMessage");
+const usernameInput = document.getElementById("username");
+
+const usernameStatus = document.createElement("small");
+usernameStatus.style.display = "none";
+usernameStatus.style.marginTop = "7px";
+usernameStatus.style.fontSize = "12px";
+
+usernameInput.parentNode.appendChild(usernameStatus);
+
+let usernameCheckTimer;
+
+usernameInput.addEventListener("input", () => {
+  clearTimeout(usernameCheckTimer);
+
+  const username = usernameInput.value.trim();
+
+  usernameStatus.style.display = "none";
+  usernameStatus.textContent = "";
+
+  if (!username) {
+    return;
+  }
+
+  if (!/^[A-Za-z0-9]{4,20}$/.test(username)) {
+    usernameStatus.textContent =
+      "Username must be 4–20 characters and contain only letters and numbers.";
+    usernameStatus.style.color = "#dc2626";
+    usernameStatus.style.display = "block";
+    return;
+  }
+
+  usernameStatus.textContent = "Checking username...";
+  usernameStatus.style.color = "#6b7280";
+  usernameStatus.style.display = "block";
+
+  usernameCheckTimer = setTimeout(async () => {
+    const { data, error } = await supabaseClient
+      .from("profile")
+      .select("id")
+      .ilike("username", username)
+      .limit(1);
+
+    if (error) {
+      usernameStatus.textContent =
+        "Unable to check username right now.";
+      usernameStatus.style.color = "#dc2626";
+      return;
+    }
+
+    if (data && data.length > 0) {
+      usernameStatus.textContent =
+        "This username already exists. Please choose another.";
+      usernameStatus.style.color = "#dc2626";
+    } else {
+      usernameStatus.textContent =
+        "Wonderful! Username is available.";
+      usernameStatus.style.color = "#10b981";
+    }
+  }, 500);
+});
 
 registerForm.addEventListener("submit", async (event) => {
   event.preventDefault();
