@@ -312,3 +312,4 @@ logoutButton.addEventListener("click", async () => {
   document.querySelector(".app").style.display = "none";
   loginScreen.style.display = "flex";
   registerScreen.style.display = "none";
+});
