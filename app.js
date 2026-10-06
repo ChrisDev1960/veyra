@@ -212,12 +212,19 @@ if (existingUsername && existingUsername.length > 0) {
 
     registerForm.reset();
 
-  } catch (error) {
+ } catch (error) {
+  if (
+    error.code === "23505" ||
+    error.message?.toLowerCase().includes("username")
+  ) {
+    registerMessage.textContent =
+      "This username already exists. Please choose another.";
+  } else {
     registerMessage.textContent =
       error.message || "Something went wrong. Please try again.";
-    registerMessage.style.display = "block";
-  } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = "Create account";
   }
+
+  registerMessage.classList.remove("success");
+  registerMessage.style.display = "block";
+}
 });
