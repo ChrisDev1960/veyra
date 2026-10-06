@@ -84,10 +84,9 @@ usernameInput.addEventListener("input", () => {
 
   usernameCheckTimer = setTimeout(async () => {
     const { data, error } = await supabaseClient
-      .from("profile")
-      .select("id")
-      .ilike("username", username)
-      .limit(1);
+      .rpc("check_username_available", {
+        p_username: username
+      });
 
     if (error) {
       usernameStatus.textContent =
@@ -96,7 +95,7 @@ usernameInput.addEventListener("input", () => {
       return;
     }
 
-    if (data && data.length > 0) {
+    if (!data) {
       usernameStatus.textContent =
         "This username already exists. Please choose another.";
       usernameStatus.style.color = "#dc2626";
