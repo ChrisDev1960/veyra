@@ -204,9 +204,11 @@ if (existingUsername && existingUsername.length > 0) {
       throw error;
     }
 
-    registerMessage.textContent =
-      "Account created. Please check your email to verify your account.";
-    registerMessage.style.display = "block";
+  registerMessage.textContent =
+  "Account created successfully. Please check your email to verify your account.";
+
+  registerMessage.classList.add("success");
+  registerMessage.style.display = "block";
 
     registerForm.reset();
 
