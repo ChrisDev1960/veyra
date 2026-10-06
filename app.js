@@ -162,16 +162,21 @@ registerForm.addEventListener("submit", async (event) => {
     return;
   }
 
-  const { data: existingUsername, error: usernameError } =
-  await supabaseClient
-    .from("profile")
-    .select("id")
-    .ilike("username", username)
-    .limit(1);
+  const { data: usernameAvailable, error: usernameError } =
+  await supabaseClient.rpc("check_username_available", {
+    p_username: username
+  });
 
 if (usernameError) {
   registerMessage.textContent =
     "We couldn't verify the username right now. Please try again.";
+  registerMessage.style.display = "block";
+  return;
+}
+
+if (!usernameAvailable) {
+  registerMessage.textContent =
+    "This username already exists. Please choose another.";
   registerMessage.style.display = "block";
   return;
 }
