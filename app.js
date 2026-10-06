@@ -40,3 +40,17 @@ document.querySelectorAll("button").forEach(button => {
     }
   });
 });
+
+console.log("VEYRA: Testing Supabase connection...");
+
+supabaseClient
+  .from("profile")
+  .select("id")
+  .limit(1)
+  .then(({ data, error }) => {
+    if (error) {
+      console.error("VEYRA SUPABASE TEST FAILED:", error);
+    } else {
+      console.log("VEYRA SUPABASE CONNECTION SUCCESSFUL:", data);
+    }
+  });
