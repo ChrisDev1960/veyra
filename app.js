@@ -456,29 +456,6 @@ supabaseClient.auth.getUser().then(({ data, error }) => {
   }
 });
 
-  profileSection.style.display = "block";
-
-  const { data, error } = await supabaseClient.auth.getUser();
-
-  if (error || !data.user) {
-    return;
-  }
-
-  const firstName = data.user.user_metadata?.first_name || "";
-  const lastName = data.user.user_metadata?.last_name || "";
-  const email = data.user.email || "";
-
-  document.getElementById("profileName").textContent =
-    `${firstName} ${lastName}`.trim();
-
-  document.getElementById("profileEmail").textContent = email;
-
-  const initials =
-    `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
-
-  document.getElementById("profileAvatar").textContent =
-    initials || "--";
-});
 
 const homeNavButton = document.getElementById("homeNavButton");
 const profileNavButton = document.getElementById("profileNavButton");
