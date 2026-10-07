@@ -226,6 +226,111 @@
     </div>
 
   </section>
+  
+
+  <!-- LOGIN SCREEN -->
+  <section id="loginScreen" class="auth-screen" style="display: none;">
+
+    <div class="auth-card">
+
+      <div class="auth-brand">Veyra</div>
+      <p class="auth-motto">Intelligence, Refined.</p>
+
+      <h1>Welcome back</h1>
+      <p class="auth-subtitle">
+        Log in to your Veyra account.
+      </p>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input
+            type="email"
+            id="loginEmail"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input
+            type="password"
+            id="loginPassword"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+        <p id="loginMessage" class="auth-message"></p>
+
+        <button type="submit" class="auth-submit">
+          Log in
+        </button>
+
+      </form>
+
+      <p class="forgot-password-link">
+        <button type="button" id="forgotPasswordButton">Forgot password?</button>
+      </p>
+
+      <p class="auth-login-link">
+        Don't have an account?
+        <button type="button" id="showRegisterButton">Create account</button>
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- RESET PASSWORD SCREEN -->
+  <section id="resetPasswordScreen" class="auth-screen" style="display: none;">
+
+    <div class="auth-card">
+
+      <div class="auth-brand">Veyra</div>
+      <p class="auth-motto">Intelligence, Refined.</p>
+
+      <h1>Reset your password</h1>
+      <p class="auth-subtitle">
+        Create a new password for your Veyra account.
+      </p>
+
+      <form id="resetPasswordForm">
+
+        <div class="form-group">
+          <label for="newPassword">New password</label>
+          <input
+            type="password"
+            id="newPassword"
+            autocomplete="new-password"
+            required
+          >
+          <small>Minimum 8 characters, 1 uppercase letter and 1 number.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmNewPassword">Confirm new password</label>
+          <input
+            type="password"
+            id="confirmNewPassword"
+            autocomplete="new-password"
+            required
+          >
+        </div>
+
+        <p id="resetPasswordMessage" class="auth-message"></p>
+
+        <button type="submit" class="auth-submit">
+          Update password
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
 
   </div>
 
