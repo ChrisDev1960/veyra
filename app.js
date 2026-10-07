@@ -534,3 +534,16 @@ walletNavButton.addEventListener("click", () => {
 
   setActiveNav(walletNavButton);
 });
+
+const walletAddMoneyButton = document.getElementById("walletAddMoneyButton");
+const addMoneySection = document.getElementById("addMoneySection");
+
+walletAddMoneyButton.addEventListener("click", () => {
+  const sections = document.querySelectorAll("main > section");
+
+  sections.forEach((section) => {
+    section.style.display = "none";
+  });
+
+  addMoneySection.style.display = "block";
+});
