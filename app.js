@@ -547,6 +547,7 @@ function openAddMoney() {
   });
 
   addMoneySection.style.display = "block";
+  addMoneySection.scrollIntoView({ behavior: "smooth" });
 }
 
 walletAddMoneyButton.addEventListener("click", openAddMoney);
