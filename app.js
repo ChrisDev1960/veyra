@@ -422,3 +422,27 @@ resetPasswordForm.addEventListener("submit", async (event) => {
 
   resetPasswordForm.reset();
 });
+
+const userGreeting = document.getElementById("userGreeting");
+
+supabaseClient.auth.getUser().then(({ data, error }) => {
+  if (error || !data.user) {
+    return;
+  }
+
+  const firstName = data.user.user_metadata?.first_name;
+
+  if (firstName) {
+    const hour = new Date().getHours();
+
+    let greeting = "Good evening";
+
+    if (hour < 12) {
+      greeting = "Good morning";
+    } else if (hour < 18) {
+      greeting = "Good afternoon";
+    }
+
+    userGreeting.textContent = `${greeting}, ${firstName}`;
+  }
+});
