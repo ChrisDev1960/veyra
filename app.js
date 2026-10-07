@@ -287,6 +287,19 @@ loginForm.addEventListener("submit", async (event) => {
   document.querySelector(".app").style.display = "block";
 });
 
+const resetPasswordScreen = document.getElementById("resetPasswordScreen");
+const resetPasswordForm = document.getElementById("resetPasswordForm");
+const resetPasswordMessage = document.getElementById("resetPasswordMessage");
+
+supabaseClient.auth.onAuthStateChange((event) => {
+  if (event === "PASSWORD_RECOVERY") {
+    registerScreen.style.display = "none";
+    loginScreen.style.display = "none";
+    document.querySelector(".app").style.display = "none";
+    resetPasswordScreen.style.display = "flex";
+  }
+});
+
 supabaseClient.auth.getSession().then(({ data }) => {
   if (data.session) {
     registerScreen.style.display = "none";
@@ -298,7 +311,6 @@ supabaseClient.auth.getSession().then(({ data }) => {
     document.querySelector(".app").style.display = "none";
   }
 });
-
 const logoutButton = document.getElementById("logoutButton");
 
 logoutButton.addEventListener("click", async () => {
