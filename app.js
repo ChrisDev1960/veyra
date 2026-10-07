@@ -489,3 +489,16 @@ profileNavButton.addEventListener("click", async () => {
   document.getElementById("profileAvatar").textContent =
     initials || "--";
 });
+
+const homeNavButton = document.getElementById("homeNavButton");
+const homeSection = document.querySelector("main > section");
+
+homeNavButton.addEventListener("click", () => {
+  const sections = document.querySelectorAll("main > section");
+
+  sections.forEach((section) => {
+    section.style.display = "none";
+  });
+
+  homeSection.style.display = "block";
+});
