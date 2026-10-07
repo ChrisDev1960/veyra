@@ -356,10 +356,6 @@ forgotPasswordButton.addEventListener("click", async () => {
   loginMessage.style.display = "block";
 });
 
-const resetPasswordScreen = document.getElementById("resetPasswordScreen");
-const resetPasswordForm = document.getElementById("resetPasswordForm");
-const resetPasswordMessage = document.getElementById("resetPasswordMessage");
-
 supabaseClient.auth.onAuthStateChange((event) => {
   if (event === "PASSWORD_RECOVERY") {
     registerScreen.style.display = "none";
