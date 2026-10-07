@@ -536,9 +536,10 @@ walletNavButton.addEventListener("click", () => {
 });
 
 const walletAddMoneyButton = document.getElementById("walletAddMoneyButton");
+const homeAddMoneyButton = document.querySelector(".balance-actions .primary-button");
 const addMoneySection = document.getElementById("addMoneySection");
 
-walletAddMoneyButton.addEventListener("click", () => {
+function openAddMoney() {
   const sections = document.querySelectorAll("main > section");
 
   sections.forEach((section) => {
@@ -546,4 +547,10 @@ walletAddMoneyButton.addEventListener("click", () => {
   });
 
   addMoneySection.style.display = "block";
-});
+}
+
+walletAddMoneyButton.addEventListener("click", openAddMoney);
+
+if (homeAddMoneyButton) {
+  homeAddMoneyButton.addEventListener("click", openAddMoney);
+}
