@@ -521,7 +521,7 @@ profileNavButton.addEventListener("click", async () => {
 
 
 const walletNavButton = document.getElementById("walletNavButton");
-const balanceCard = document.querySelector(".balance-card");
+const walletSection = document.getElementById("walletSection");
 
 walletNavButton.addEventListener("click", () => {
   const sections = document.querySelectorAll("main > section");
@@ -530,7 +530,7 @@ walletNavButton.addEventListener("click", () => {
     section.style.display = "none";
   });
 
-  balanceCard.style.display = "block";
+  walletSection.style.display = "block";
 
   setActiveNav(walletNavButton);
 });
