@@ -455,3 +455,37 @@ supabaseClient.auth.getUser().then(({ data, error }) => {
     userInitials.textContent = `${firstInitial}${lastInitial}`;
   }
 });
+
+const profileNavButton = document.getElementById("profileNavButton");
+const profileSection = document.getElementById("profileSection");
+
+profileNavButton.addEventListener("click", async () => {
+  const sections = document.querySelectorAll("main > section");
+
+  sections.forEach((section) => {
+    section.style.display = "none";
+  });
+
+  profileSection.style.display = "block";
+
+  const { data, error } = await supabaseClient.auth.getUser();
+
+  if (error || !data.user) {
+    return;
+  }
+
+  const firstName = data.user.user_metadata?.first_name || "";
+  const lastName = data.user.user_metadata?.last_name || "";
+  const email = data.user.email || "";
+
+  document.getElementById("profileName").textContent =
+    `${firstName} ${lastName}`.trim();
+
+  document.getElementById("profileEmail").textContent = email;
+
+  const initials =
+    `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+
+  document.getElementById("profileAvatar").textContent =
+    initials || "--";
+});
