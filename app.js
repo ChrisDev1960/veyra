@@ -490,18 +490,6 @@ profileNavButton.addEventListener("click", async () => {
 });
 
 const homeNavButton = document.getElementById("homeNavButton");
-
-homeNavButton.addEventListener("click", () => {
-  const sections = document.querySelectorAll("main > section");
-
-  sections.forEach((section) => {
-    section.style.display = "none";
-  });
-
-  homeSection.style.display = "block";
-});
-
-const homeNavButton = document.getElementById("homeNavButton");
 const profileNavButton = document.getElementById("profileNavButton");
 const profileSection = document.getElementById("profileSection");
 
