@@ -456,7 +456,6 @@ supabaseClient.auth.getUser().then(({ data, error }) => {
   }
 });
 
-const profileNavButton = document.getElementById("profileNavButton");
 const profileSection = document.getElementById("profileSection");
 
 profileNavButton.addEventListener("click", async () => {
@@ -491,7 +490,6 @@ profileNavButton.addEventListener("click", async () => {
 });
 
 const homeNavButton = document.getElementById("homeNavButton");
-const homeSection = document.querySelector("main > section");
 
 homeNavButton.addEventListener("click", () => {
   const sections = document.querySelectorAll("main > section");
@@ -501,4 +499,66 @@ homeNavButton.addEventListener("click", () => {
   });
 
   homeSection.style.display = "block";
+});
+
+const homeNavButton = document.getElementById("homeNavButton");
+const profileNavButton = document.getElementById("profileNavButton");
+const profileSection = document.getElementById("profileSection");
+
+const allMainSections = document.querySelectorAll("main > section");
+const homeSections = document.querySelectorAll(
+  "main > section:not(#profileSection)"
+);
+
+const navItems = document.querySelectorAll(".bottom-nav .nav-item");
+
+function setActiveNav(button) {
+  navItems.forEach((item) => {
+    item.classList.remove("active");
+  });
+
+  button.classList.add("active");
+}
+
+homeNavButton.addEventListener("click", () => {
+  allMainSections.forEach((section) => {
+    section.style.display = "none";
+  });
+
+  homeSections.forEach((section) => {
+    section.style.display = "";
+  });
+
+  setActiveNav(homeNavButton);
+});
+
+profileNavButton.addEventListener("click", async () => {
+  allMainSections.forEach((section) => {
+    section.style.display = "none";
+  });
+
+  profileSection.style.display = "block";
+
+  setActiveNav(profileNavButton);
+
+  const { data, error } = await supabaseClient.auth.getUser();
+
+  if (error || !data.user) {
+    return;
+  }
+
+  const firstName = data.user.user_metadata?.first_name || "";
+  const lastName = data.user.user_metadata?.last_name || "";
+  const email = data.user.email || "";
+
+  document.getElementById("profileName").textContent =
+    `${firstName} ${lastName}`.trim();
+
+  document.getElementById("profileEmail").textContent = email;
+
+  const initials =
+    `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+
+  document.getElementById("profileAvatar").textContent =
+    initials || "--";
 });
