@@ -424,6 +424,7 @@ resetPasswordForm.addEventListener("submit", async (event) => {
 });
 
 const userGreeting = document.getElementById("userGreeting");
+const userInitials = document.getElementById("userInitials");
 
 supabaseClient.auth.getUser().then(({ data, error }) => {
   if (error || !data.user) {
@@ -431,6 +432,7 @@ supabaseClient.auth.getUser().then(({ data, error }) => {
   }
 
   const firstName = data.user.user_metadata?.first_name;
+  const lastName = data.user.user_metadata?.last_name;
 
   if (firstName) {
     const hour = new Date().getHours();
@@ -444,5 +446,12 @@ supabaseClient.auth.getUser().then(({ data, error }) => {
     }
 
     userGreeting.textContent = `${greeting}, ${firstName}`;
+  }
+
+  if (firstName || lastName) {
+    const firstInitial = firstName ? firstName.charAt(0).toUpperCase() : "";
+    const lastInitial = lastName ? lastName.charAt(0).toUpperCase() : "";
+
+    userInitials.textContent = `${firstInitial}${lastInitial}`;
   }
 });
