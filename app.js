@@ -343,3 +343,74 @@ forgotPasswordButton.addEventListener("click", async () => {
     "Password reset link sent. Please check your email.";
   loginMessage.style.display = "block";
 });
+
+const resetPasswordScreen = document.getElementById("resetPasswordScreen");
+const resetPasswordForm = document.getElementById("resetPasswordForm");
+const resetPasswordMessage = document.getElementById("resetPasswordMessage");
+
+supabaseClient.auth.onAuthStateChange((event) => {
+  if (event === "PASSWORD_RECOVERY") {
+    registerScreen.style.display = "none";
+    loginScreen.style.display = "none";
+    document.querySelector(".app").style.display = "none";
+    resetPasswordScreen.style.display = "flex";
+  }
+});
+
+resetPasswordForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const newPassword = document.getElementById("newPassword").value;
+  const confirmNewPassword =
+    document.getElementById("confirmNewPassword").value;
+
+  resetPasswordMessage.style.display = "none";
+  resetPasswordMessage.textContent = "";
+
+  if (newPassword.length < 8) {
+    resetPasswordMessage.textContent =
+      "Password must be at least 8 characters.";
+    resetPasswordMessage.style.display = "block";
+    return;
+  }
+
+  if (!/[A-Z]/.test(newPassword)) {
+    resetPasswordMessage.textContent =
+      "Password must contain at least 1 uppercase letter.";
+    resetPasswordMessage.style.display = "block";
+    return;
+  }
+
+  if (!/[0-9]/.test(newPassword)) {
+    resetPasswordMessage.textContent =
+      "Password must contain at least 1 number.";
+    resetPasswordMessage.style.display = "block";
+    return;
+  }
+
+  if (newPassword !== confirmNewPassword) {
+    resetPasswordMessage.textContent =
+      "Passwords do not match.";
+    resetPasswordMessage.style.display = "block";
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.updateUser({
+    password: newPassword
+  });
+
+  if (error) {
+    console.error("Password update error:", error);
+
+    resetPasswordMessage.textContent =
+      error.message || "Unable to update password. Please try again.";
+    resetPasswordMessage.style.display = "block";
+    return;
+  }
+
+  resetPasswordMessage.textContent =
+    "Password updated successfully. You can now log in.";
+  resetPasswordMessage.style.display = "block";
+
+  resetPasswordForm.reset();
+});
