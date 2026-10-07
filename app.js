@@ -518,3 +518,19 @@ profileNavButton.addEventListener("click", async () => {
   document.getElementById("profileAvatar").textContent =
     initials || "--";
 });
+
+
+const walletNavButton = document.getElementById("walletNavButton");
+const balanceCard = document.querySelector(".balance-card");
+
+walletNavButton.addEventListener("click", () => {
+  const sections = document.querySelectorAll("main > section");
+
+  sections.forEach((section) => {
+    section.style.display = "none";
+  });
+
+  balanceCard.style.display = "block";
+
+  setActiveNav(walletNavButton);
+});
