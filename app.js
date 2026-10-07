@@ -456,15 +456,6 @@ supabaseClient.auth.getUser().then(({ data, error }) => {
   }
 });
 
-const profileSection = document.getElementById("profileSection");
-
-profileNavButton.addEventListener("click", async () => {
-  const sections = document.querySelectorAll("main > section");
-
-  sections.forEach((section) => {
-    section.style.display = "none";
-  });
-
   profileSection.style.display = "block";
 
   const { data, error } = await supabaseClient.auth.getUser();
