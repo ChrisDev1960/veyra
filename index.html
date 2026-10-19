@@ -606,23 +606,59 @@
      </section>
 
  <!-- ADD MONEY SECTION -->
+       <!-- ADD MONEY SECTION -->
     <section id="addMoneySection" style="display: none;">
 
       <h2>Add money</h2>
+      <p>Fund your Veyra wallet using a bank transfer.</p>
 
       <div class="deposit-card">
 
-        <h3>Choose deposit method</h3>
+        <h3>Bank transfer</h3>
+        <p>Transfer to the bank account displayed below, then submit your payment details for manual verification.</p>
 
-        <button class="deposit-method" id="bankDepositButton" type="button">
-          <strong>Bank transfer</strong>
-          <span>Transfer money to Veyra's bank account</span>
-        </button>
+        <div class="bank-details">
+          <p><strong>Bank name</strong></p>
+          <p id="depositBankName">Bank details coming soon</p>
 
-        <button class="deposit-method" id="cryptoDepositButton" type="button">
-          <strong>Crypto</strong>
-          <span>Deposit using cryptocurrency</span>
-        </button>
+          <p><strong>Account name</strong></p>
+          <p id="depositAccountName">Veyra</p>
+
+          <p><strong>Account number</strong></p>
+          <p id="depositAccountNumber">Not configured yet</p>
+        </div>
+
+        <form id="depositForm">
+
+          <label for="depositAmount">Amount (₦)</label>
+          <input
+            id="depositAmount"
+            name="depositAmount"
+            type="number"
+            min="1200"
+            step="1"
+            placeholder="Enter amount (minimum ₦1,200)"
+            required
+          >
+
+          <label for="depositProof">Transfer receipt / proof</label>
+          <input
+            id="depositProof"
+            name="depositProof"
+            type="file"
+            accept="image/*,.pdf"
+            required
+          >
+
+          <p id="depositMessage" role="status" style="display: none;"></p>
+
+          <button type="submit" class="primary-button">
+            Submit deposit for approval
+          </button>
+
+        </form>
+
+        <p>Your deposit will remain pending until Veyra verifies and approves your payment.</p>
 
       </div>
 
