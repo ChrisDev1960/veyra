@@ -663,7 +663,8 @@ if (addMoneySection && !byId("backToWalletButton")) {
 }
 
 
- // ==============================
+
+// ==============================
 // MANUAL DEPOSIT SUBMISSION
 // ==============================
 const depositForm = document.getElementById("depositForm");
@@ -680,11 +681,11 @@ if (depositForm) {
     const amount = Number(amountInput.value);
     const file = proofInput.files?.[0];
 
-    const showDepositMessage = (text, success = false) => {
+    const showDepositMessage = (text) => {
       if (!message) return;
       message.textContent = text;
       message.style.display = "block";
-      message.style.color = success ? "#16803c" : "#dc2626";
+      message.style.color = "#dc2626";
     };
 
     if (!Number.isFinite(amount) || amount < 1200) {
@@ -697,7 +698,9 @@ if (depositForm) {
       return;
     }
 
-    if (!["image/jpeg", "image/png", "image/webp", "application/pdf"].includes(file.type)) {
+    if (
+      !["image/jpeg", "image/png", "image/webp", "application/pdf"].includes(file.type)
+    ) {
       showDepositMessage("Upload a JPG, PNG, WEBP, or PDF receipt.");
       return;
     }
@@ -744,12 +747,21 @@ if (depositForm) {
 
       if (requestError) throw requestError;
 
-      showDepositMessage(
-        "Deposit request submitted! Your payment is pending manual verification.",
-        true
-      );
-
+      // Show the confirmation screen only after successful submission.
       depositForm.reset();
+
+      document.getElementById("addMoneySection").style.display = "none";
+
+      const successSection =
+        document.getElementById("depositSuccessSection");
+
+      if (!successSection) {
+        throw new Error("Confirmation screen not found. Please refresh and try again.");
+      }
+
+      successSection.style.display = "block";
+      window.scrollTo(0, 0);
+
     } catch (error) {
       console.error("Deposit submission error:", error);
       showDepositMessage(
@@ -761,5 +773,31 @@ if (depositForm) {
         submitButton.textContent = "Submit deposit for approval";
       }
     }
+  });
+}
+
+// ==============================
+// DEPOSIT SUCCESS — DONE BUTTON
+// ==============================
+const depositSuccessDone =
+  document.getElementById("depositSuccessDone");
+
+if (depositSuccessDone) {
+  depositSuccessDone.addEventListener("click", () => {
+    const successSection =
+      document.getElementById("depositSuccessSection");
+
+    if (successSection) {
+      successSection.style.display = "none";
+    }
+
+    // Return to the Home screen.
+    const homeSection = document.getElementById("homeSection");
+
+    if (homeSection) {
+      homeSection.style.display = "block";
+    }
+
+    window.scrollTo(0, 0);
   });
 }
