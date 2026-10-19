@@ -661,3 +661,105 @@ if (addMoneySection && !byId("backToWalletButton")) {
 
   addMoneySection.insertBefore(backButton, addMoneySection.firstChild);
 }
+
+
+ // ==============================
+// MANUAL DEPOSIT SUBMISSION
+// ==============================
+const depositForm = document.getElementById("depositForm");
+
+if (depositForm) {
+  depositForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const message = document.getElementById("depositMessage");
+    const submitButton = depositForm.querySelector('button[type="submit"]');
+    const amountInput = document.getElementById("depositAmount");
+    const proofInput = document.getElementById("depositProof");
+
+    const amount = Number(amountInput.value);
+    const file = proofInput.files?.[0];
+
+    const showDepositMessage = (text, success = false) => {
+      if (!message) return;
+      message.textContent = text;
+      message.style.display = "block";
+      message.style.color = success ? "#16803c" : "#dc2626";
+    };
+
+    if (!Number.isFinite(amount) || amount < 1200) {
+      showDepositMessage("Minimum deposit is ₦1,200.");
+      return;
+    }
+
+    if (!file) {
+      showDepositMessage("Please upload your transfer receipt.");
+      return;
+    }
+
+    if (!["image/jpeg", "image/png", "image/webp", "application/pdf"].includes(file.type)) {
+      showDepositMessage("Upload a JPG, PNG, WEBP, or PDF receipt.");
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      showDepositMessage("Receipt must be 5 MB or smaller.");
+      return;
+    }
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+    }
+
+    try {
+      const { data: userData, error: userError } =
+        await supabaseClient.auth.getUser();
+
+      if (userError || !userData.user) {
+        throw new Error("Please log in again before submitting.");
+      }
+
+      const userId = userData.user.id;
+      const extension = file.name.split(".").pop().toLowerCase();
+      const proofPath =
+        `${userId}/${crypto.randomUUID()}.${extension}`;
+
+      const { error: uploadError } = await supabaseClient.storage
+        .from("deposit-proofs")
+        .upload(proofPath, file, {
+          contentType: file.type,
+          upsert: false
+        });
+
+      if (uploadError) throw uploadError;
+
+      const { error: requestError } = await supabaseClient
+        .from("deposit_requests")
+        .insert({
+          user_id: userId,
+          amount,
+          proof_path: proofPath
+        });
+
+      if (requestError) throw requestError;
+
+      showDepositMessage(
+        "Deposit request submitted! Your payment is pending manual verification.",
+        true
+      );
+
+      depositForm.reset();
+    } catch (error) {
+      console.error("Deposit submission error:", error);
+      showDepositMessage(
+        error.message || "Could not submit your deposit. Please try again."
+      );
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit deposit for approval";
+      }
+    }
+  });
+}
