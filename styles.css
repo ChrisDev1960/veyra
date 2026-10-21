@@ -775,3 +775,574 @@ button:active {
   color: #6B7280;
 }
 
+
+/* ==========================================
+   VEYRA — PREMIUM FINTECH DESIGN SYSTEM
+   iOS-inspired | Warm neutral palette
+========================================== */
+
+:root {
+  --background: #BFBBB4;
+  --surface: #FFFFFF;
+  --surface-soft: #F5F3F0;
+
+  --charcoal: #242320;
+  --text: #292723;
+  --muted: #817C75;
+
+  --emerald: #A68A7D;
+  --emerald-dark: #886D60;
+
+  --accent: #C86A4B;
+  --border: rgba(66, 55, 46, 0.10);
+  --white: #FFFFFF;
+
+  --radius-card: 26px;
+  --radius-control: 16px;
+
+  --shadow-card:
+    0 8px 28px rgba(47, 39, 32, 0.055);
+
+  --shadow-floating:
+    0 12px 36px rgba(47, 39, 32, 0.12);
+}
+
+/* Base */
+
+html {
+  background: var(--background);
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.015em;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(200, 106, 75, 0.35);
+  outline-offset: 3px;
+}
+
+.app {
+  max-width: 480px;
+}
+
+/* Header */
+
+.brand {
+  font-size: 28px;
+  font-weight: 750;
+  letter-spacing: -1.3px;
+}
+
+.greeting {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.round-button,
+.profile-button {
+  width: 46px;
+  height: 46px;
+  box-shadow: 0 5px 18px rgba(40, 33, 27, 0.07);
+}
+
+.profile-button {
+  background: var(--charcoal);
+}
+
+/* Balance */
+
+.balance-card {
+  background: linear-gradient(145deg, #34312D, #22211F);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 29px;
+  padding: 26px 24px;
+  box-shadow: 0 16px 35px rgba(38, 32, 27, 0.17);
+}
+
+.balance {
+  font-size: clamp(30px, 8vw, 38px);
+  letter-spacing: -1.5px;
+  font-weight: 700;
+}
+
+.primary-button,
+.auth-submit {
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius-control);
+  font-weight: 650;
+  box-shadow: 0 5px 12px rgba(200, 106, 75, 0.13);
+}
+
+.primary-button:hover,
+.auth-submit:hover {
+  background: #B65B3E;
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Sections and cards */
+
+.section {
+  margin-top: 30px;
+}
+
+.section-heading h2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+
+.service-grid {
+  gap: 12px;
+}
+
+.service-card {
+  min-height: 122px;
+  padding: 17px;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 23px;
+  box-shadow: var(--shadow-card);
+}
+
+.service-icon,
+.activity-icon {
+  background: #F1E8E2;
+}
+
+.service-icon svg,
+.activity-icon svg {
+  stroke: var(--emerald-dark);
+}
+
+.service-card > span:last-child {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.activity-list {
+  border: 1px solid var(--border);
+  border-radius: 23px;
+  box-shadow: var(--shadow-card);
+}
+
+.activity + .activity {
+  border-color: var(--border);
+}
+
+.activity-info strong {
+  font-weight: 650;
+}
+
+/* Wallet */
+
+.wallet-dashboard {
+  gap: 14px;
+}
+
+.wallet-balance-card,
+.wallet-pending-card {
+  border-radius: var(--radius-card);
+  padding: 25px;
+  box-shadow: var(--shadow-card);
+}
+
+.wallet-balance-card {
+  background: linear-gradient(145deg, #A68A7D, #8F7265);
+  color: white;
+}
+
+.wallet-pending-card {
+  background: #F3E9DF;
+  color: #6D5143;
+  border: 1px solid rgba(109, 81, 67, 0.08);
+}
+
+.wallet-balance-label,
+.wallet-pending-card p {
+  font-weight: 500;
+}
+
+.wallet-balance-amount,
+.wallet-pending-amount {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.wallet-actions {
+  gap: 10px;
+}
+
+/* Deposit screen */
+
+#addMoneySection {
+  padding-bottom: 24px;
+}
+
+#addMoneySection > h2 {
+  margin: 10px 0 8px;
+  color: var(--charcoal);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.9px;
+}
+
+#addMoneySection > p {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.deposit-card {
+  margin-top: 20px;
+  padding: 23px 20px;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 26px;
+  box-shadow: var(--shadow-card);
+}
+
+.deposit-card h3 {
+  margin: 0 0 12px;
+  color: var(--charcoal);
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.deposit-card > p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.bank-details {
+  margin: 22px 0;
+  padding: 17px;
+  background: #F7F5F2;
+  border: 1px solid #EEE9E4;
+  border-radius: 18px;
+}
+
+.bank-details p {
+  overflow-wrap: anywhere;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.bank-details p strong {
+  color: #82776D;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#depositForm {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 9px;
+}
+
+#depositForm label {
+  margin-top: 8px;
+  color: #514B45;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+#depositForm input[type="number"],
+#depositForm input[type="text"] {
+  width: 100%;
+  min-width: 0;
+  min-height: 52px;
+  padding: 14px 15px;
+  color: var(--charcoal);
+  background: #FAF9F7;
+  border: 1px solid #E7E1DA;
+  border-radius: 15px;
+  font-size: 16px;
+  outline: none;
+}
+
+#depositForm input:focus {
+  border-color: var(--emerald);
+  box-shadow: 0 0 0 3px rgba(166, 138, 125, 0.15);
+}
+
+#depositForm input[type="file"] {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 13px;
+  background: #FAF9F7;
+  border: 1px dashed #C9B8AC;
+  border-radius: 15px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+#depositForm input[type="file"]::file-selector-button {
+  margin-right: 10px;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #EEE4DD;
+  color: #6F5548;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+#depositForm .primary-button {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 10px;
+  padding: 14px;
+  background: var(--accent);
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+#depositMessage {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #F9EDE8;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* Premium deposit confirmation screen */
+
+#depositSuccessSection {
+  position: relative;
+  min-height: 0 !important;
+  margin: 10px 0 100px;
+  padding: 54px 24px 36px !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(45, 38, 32, 0.045);
+  border-radius: 30px;
+  box-shadow: 0 10px 35px rgba(45, 38, 32, 0.045);
+  text-align: center;
+}
+
+#depositSuccessSection > div {
+  max-width: 340px !important;
+  margin: 0 auto !important;
+  padding-top: 0 !important;
+}
+
+#depositSuccessSection > div > div:first-child {
+  width: 70px !important;
+  height: 70px !important;
+  margin: 0 auto 25px !important;
+  background: #EAF5ED !important;
+  color: #328653 !important;
+  font-size: 37px !important;
+  font-weight: 500 !important;
+}
+
+#depositSuccessSection h2 {
+  margin: 0 0 12px !important;
+  color: #252521 !important;
+  font-size: 25px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.8px;
+}
+
+#depositSuccessSection > div > p:first-of-type {
+  max-width: 300px !important;
+  margin: 0 auto 28px !important;
+  color: #817D77 !important;
+  font-size: 14px !important;
+  line-height: 1.75 !important;
+}
+
+#depositSuccessSection > div > div:nth-of-type(2) {
+  margin-bottom: 20px !important;
+  padding: 17px !important;
+  background: #F7F6F3 !important;
+  border: 1px solid #EFEBE6;
+  border-radius: 17px !important;
+}
+
+#depositSuccessSection > div > div:nth-of-type(2) p:first-child {
+  margin-bottom: 8px !important;
+  color: #928B83 !important;
+  font-size: 10px !important;
+  font-weight: 650;
+  letter-spacing: 1.2px;
+}
+
+#depositSuccessSection > div > div:nth-of-type(2) p:last-child {
+  color: #92704B !important;
+  font-size: 14px !important;
+  font-weight: 650 !important;
+}
+
+#depositSuccessSection #depositSuccessDone {
+  min-height: 51px;
+  margin-top: 0;
+  background: #A68A7D !important;
+  border-radius: 15px !important;
+  color: #FFFFFF !important;
+  font-size: 15px !important;
+  font-weight: 650 !important;
+  box-shadow: none;
+}
+
+#depositSuccessSection #depositSuccessDone:active {
+  transform: scale(0.98);
+}
+
+#depositSuccessSection > div > p:last-child {
+  margin-top: 27px !important;
+  color: #AAA39B !important;
+  font-size: 10px !important;
+  letter-spacing: 1.4px;
+}
+
+/* Authentication screens */
+
+.auth-screen {
+  background: var(--background);
+}
+
+.auth-brand {
+  color: var(--charcoal);
+}
+
+.auth-motto {
+  color: var(--emerald-dark);
+}
+
+.auth-card h1 {
+  color: var(--charcoal);
+  font-weight: 700;
+  letter-spacing: -0.7px;
+}
+
+.form-group label {
+  color: #514B45;
+  font-weight: 600;
+}
+
+.form-group input {
+  min-height: 50px;
+  border-color: #E0DAD3;
+  border-radius: 14px;
+}
+
+.form-group input:focus {
+  border-color: var(--emerald);
+  box-shadow: 0 0 0 3px rgba(166, 138, 125, 0.14);
+}
+
+.terms-row input {
+  accent-color: var(--accent);
+}
+
+.auth-submit {
+  min-height: 51px;
+  border-radius: 15px;
+}
+
+.auth-login-link button {
+  color: var(--accent);
+}
+
+/* Bottom navigation */
+
+.bottom-nav {
+  bottom: max(10px, env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.91);
+  border: 1px solid rgba(68, 57, 47, 0.09);
+  border-radius: 25px;
+  box-shadow: var(--shadow-floating);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+
+.nav-item {
+  gap: 6px;
+  border-radius: 18px;
+}
+
+.nav-item svg {
+  stroke: #81776E;
+}
+
+.nav-item span {
+  color: #81776E;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.nav-item.active {
+  background: #F0E7E0;
+}
+
+.nav-item.active svg,
+.nav-item.active span {
+  stroke: var(--emerald-dark);
+  color: var(--emerald-dark);
+}
+
+/* Responsive refinements */
+
+@media (max-width: 380px) {
+  .deposit-card {
+    padding: 19px 16px;
+  }
+
+  #depositSuccessSection {
+    padding: 42px 18px 30px !important;
+  }
+
+  .bottom-nav {
+    width: calc(100% - 18px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
