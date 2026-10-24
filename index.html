@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -13,159 +10,89 @@
 
 <body>
 
-  <!-- AUTH / REGISTRATION SCREEN -->
+  <!-- REGISTRATION SCREEN -->
   <section id="registerScreen" class="auth-screen">
-
     <div class="auth-card">
-
       <div class="auth-brand">Veyra</div>
       <p class="auth-motto">Intelligence, Refined.</p>
 
       <h1>Create your account</h1>
-      <p class="auth-subtitle">
-        Create your Veyra account to get started.
-      </p>
+      <p class="auth-subtitle">Create your Veyra account to get started.</p>
 
       <form id="registerForm">
-
         <div class="form-group">
           <label for="firstName">First name</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            autocomplete="given-name"
-            required
-          >
+          <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
         </div>
 
         <div class="form-group">
           <label for="lastName">Last name</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            autocomplete="family-name"
-            required
-          >
+          <input type="text" id="lastName" name="lastName" autocomplete="family-name" required>
         </div>
 
         <div class="form-group">
           <label for="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            autocomplete="username"
-            required
-          >
+          <input type="text" id="username" name="username" autocomplete="username" required>
         </div>
 
         <div class="form-group">
           <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            autocomplete="email"
-            required
-          >
+          <input type="email" id="email" name="email" autocomplete="email" required>
         </div>
 
         <div class="form-group">
           <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            autocomplete="new-password"
-            required
-          >
+          <input type="password" id="password" name="password" autocomplete="new-password" required>
           <small>Minimum 8 characters, 1 uppercase letter and 1 number.</small>
         </div>
 
         <div class="form-group">
           <label for="confirmPassword">Confirm password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            autocomplete="new-password"
-            required
-          >
+          <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password" required>
         </div>
 
         <label class="terms-row">
-          <input
-            type="checkbox"
-            id="terms"
-            name="terms"
-            required
-          >
+          <input type="checkbox" id="terms" name="terms" required>
           <span>
-            I agree to Veyra's Terms and Conditions and confirm that I am at
-            least 16 years old.
+            I agree to Veyra's Terms and Conditions and confirm that I am at least 16 years old.
           </span>
         </label>
 
         <p id="registerMessage" class="auth-message"></p>
 
-        <button type="submit" class="auth-submit">
-          Create account
-        </button>
-
+        <button type="submit" class="auth-submit">Create account</button>
       </form>
 
       <p class="auth-login-link">
         Already have an account?
         <button type="button" id="showLoginButton">Log in</button>
       </p>
-
     </div>
-
   </section>
 
   <!-- LOGIN SCREEN -->
   <section id="loginScreen" class="auth-screen" style="display: none;">
-
     <div class="auth-card">
-
       <div class="auth-brand">Veyra</div>
       <p class="auth-motto">Intelligence, Refined.</p>
 
       <h1>Welcome back</h1>
-      <p class="auth-subtitle">
-        Log in to your Veyra account.
-      </p>
+      <p class="auth-subtitle">Log in to your Veyra account.</p>
 
       <form id="loginForm">
-
         <div class="form-group">
           <label for="loginEmail">Email</label>
-          <input
-            type="email"
-            id="loginEmail"
-            autocomplete="email"
-            required
-          >
+          <input type="email" id="loginEmail" autocomplete="email" required>
         </div>
 
         <div class="form-group">
           <label for="loginPassword">Password</label>
-          <input
-            type="password"
-            id="loginPassword"
-            autocomplete="current-password"
-            required
-          >
+          <input type="password" id="loginPassword" autocomplete="current-password" required>
         </div>
 
         <p id="loginMessage" class="auth-message"></p>
 
-        <button type="submit" class="auth-submit">
-          Log in
-        </button>
-
+        <button type="submit" class="auth-submit">Log in</button>
       </form>
 
       <p class="forgot-password-link">
@@ -176,642 +103,408 @@
         Don't have an account?
         <button type="button" id="showRegisterButton">Create account</button>
       </p>
-
     </div>
-
   </section>
 
   <!-- RESET PASSWORD SCREEN -->
   <section id="resetPasswordScreen" class="auth-screen" style="display: none;">
-
     <div class="auth-card">
-
       <div class="auth-brand">Veyra</div>
       <p class="auth-motto">Intelligence, Refined.</p>
 
       <h1>Reset your password</h1>
-      <p class="auth-subtitle">
-        Create a new password for your Veyra account.
-      </p>
+      <p class="auth-subtitle">Create a new password for your Veyra account.</p>
 
       <form id="resetPasswordForm">
-
         <div class="form-group">
           <label for="newPassword">New password</label>
-          <input
-            type="password"
-            id="newPassword"
-            autocomplete="new-password"
-            required
-          >
+          <input type="password" id="newPassword" autocomplete="new-password" required>
           <small>Minimum 8 characters, 1 uppercase letter and 1 number.</small>
         </div>
 
         <div class="form-group">
           <label for="confirmNewPassword">Confirm new password</label>
-          <input
-            type="password"
-            id="confirmNewPassword"
-            autocomplete="new-password"
-            required
-          >
+          <input type="password" id="confirmNewPassword" autocomplete="new-password" required>
         </div>
 
         <p id="resetPasswordMessage" class="auth-message"></p>
 
-        <button type="submit" class="auth-submit">
-          Update password
-        </button>
-
+        <button type="submit" class="auth-submit">Update password</button>
       </form>
-
     </div>
-
-  </section>
-  
-
-  <!-- LOGIN SCREEN -->
-  <section id="loginScreen" class="auth-screen" style="display: none;">
-
-    <div class="auth-card">
-
-      <div class="auth-brand">Veyra</div>
-      <p class="auth-motto">Intelligence, Refined.</p>
-
-      <h1>Welcome back</h1>
-      <p class="auth-subtitle">
-        Log in to your Veyra account.
-      </p>
-
-      <form id="loginForm">
-
-        <div class="form-group">
-          <label for="loginEmail">Email</label>
-          <input
-            type="email"
-            id="loginEmail"
-            autocomplete="email"
-            required
-          >
-        </div>
-
-        <div class="form-group">
-          <label for="loginPassword">Password</label>
-          <input
-            type="password"
-            id="loginPassword"
-            autocomplete="current-password"
-            required
-          >
-        </div>
-
-        <p id="loginMessage" class="auth-message"></p>
-
-        <button type="submit" class="auth-submit">
-          Log in
-        </button>
-
-      </form>
-
-      <p class="forgot-password-link">
-        <button type="button" id="forgotPasswordButton">Forgot password?</button>
-      </p>
-
-      <p class="auth-login-link">
-        Don't have an account?
-        <button type="button" id="showRegisterButton">Create account</button>
-      </p>
-
-    </div>
-
   </section>
 
-  <!-- RESET PASSWORD SCREEN -->
-  <section id="resetPasswordScreen" class="auth-screen" style="display: none;">
+  <!-- MAIN APP -->
+  <div class="app">
 
-    <div class="auth-card">
-
-      <div class="auth-brand">Veyra</div>
-      <p class="auth-motto">Intelligence, Refined.</p>
-
-      <h1>Reset your password</h1>
-      <p class="auth-subtitle">
-        Create a new password for your Veyra account.
-      </p>
-
-      <form id="resetPasswordForm">
-
-        <div class="form-group">
-          <label for="newPassword">New password</label>
-          <input
-            type="password"
-            id="newPassword"
-            autocomplete="new-password"
-            required
-          >
-          <small>Minimum 8 characters, 1 uppercase letter and 1 number.</small>
-        </div>
-
-        <div class="form-group">
-          <label for="confirmNewPassword">Confirm new password</label>
-          <input
-            type="password"
-            id="confirmNewPassword"
-            autocomplete="new-password"
-            required
-          >
-        </div>
-
-        <p id="resetPasswordMessage" class="auth-message"></p>
-
-        <button type="submit" class="auth-submit">
-          Update password
-        </button>
-
-      </form>
-
-    </div>
-
-  </section>
-
-  </div>
-
-</section>
-
-  <!-- LOGIN SCREEN -->
-<section id="loginScreen" class="auth-screen" style="display: none;">
-
-  <div class="auth-card">
-
-    <div class="auth-brand">Veyra</div>
-    <p class="auth-motto">Intelligence, Refined.</p>
-
-    <h1>Welcome back</h1>
-    <p class="auth-subtitle">
-      Log in to your Veyra account.
-    </p>
-
-    <form id="loginForm">
-
-      <div class="form-group">
-        <label for="loginEmail">Email</label>
-        <input
-          type="email"
-          id="loginEmail"
-          autocomplete="email"
-          required
-        >
+    <!-- HEADER -->
+    <header class="topbar">
+      <div>
+        <div class="brand">Veyra</div>
+        <div class="greeting" id="userGreeting">Good evening</div>
       </div>
 
-      <div class="form-group">
-        <label for="loginPassword">Password</label>
-        <input
-          type="password"
-          id="loginPassword"
-          autocomplete="current-password"
-          required
-        >
-      </div>
-
-      <p id="loginMessage" class="auth-message"></p>
-
-      <button type="submit" class="auth-submit">
-        Log in
-      </button>
-
-    </form>
-
-    </form>
-
-<p class="forgot-password-link">
-  <button type="button" id="forgotPasswordButton">Forgot password?</button>
-</p>
-
-<p class="auth-login-link">
-
-    <p class="auth-login-link">
-      Don't have an account?
-      <button type="button" id="showRegisterButton">Create account</button>
-    </p>
-
-  </div>
-
-</section>
-
-<div class="app">
-
-<div class="app">
-
-  <!-- HEADER -->
-  <header class="topbar">
-    <div>
-      <div class="brand">Veyra</div>
-     <div class="greeting" id="userGreeting">Good evening</div>
-    </div>
-
-    <div class="top-actions">
-      <button class="round-button" aria-label="Notifications">
-        <svg viewBox="0 0 24 24">
-          <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-          <path d="M10 21h4"/>
-        </svg>
-        <span class="notification-dot"></span>
-      </button>
-
-      <button class="profile-button" aria-label="Profile">
-        <span id="userInitials">--</span>
-      </button>
-      <button id="logoutButton" class="profile-button" aria-label="Log out">
-  <span>↪</span>
-</button>
-    </div>
-  </header>
-
-
-  <main>
-
-    <!-- BALANCE -->
-    <section class="balance-card">
-
-      <div class="balance-header">
-        <span>Available balance</span>
-
-        <button id="balanceToggle" class="eye-button" aria-label="Hide balance">
+      <div class="top-actions">
+        <button class="round-button" aria-label="Notifications">
           <svg viewBox="0 0 24 24">
-            <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/>
-            <circle cx="12" cy="12" r="2.5"/>
+            <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+            <path d="M10 21h4"/>
           </svg>
+          <span class="notification-dot"></span>
+        </button>
+
+        <button class="profile-button" aria-label="Profile">
+          <span id="userInitials">--</span>
+        </button>
+
+        <button id="logoutButton" class="profile-button" aria-label="Log out">
+          <span>↪</span>
         </button>
       </div>
+    </header>
 
-      <div id="balance" class="balance">₦128,400</div>
+    <main>
 
-      <div class="balance-actions">
-        <button class="primary-button">
-          <span class="plus">+</span>
-          Add money
-        </button>
+      <!-- HOME BALANCE -->
+      <section class="balance-card">
+        <div class="balance-header">
+          <span>Available balance</span>
 
-        <button class="secondary-button">
-          Withdraw
-        </button>
-      </div>
-
-    </section>
-
-
-    <!-- SERVICES -->
-    <section class="section">
-
-      <div class="section-heading">
-        <h2>Services</h2>
-      </div>
-
-      <div class="service-grid">
-
-        <button class="service-card">
-          <span class="service-icon">
+          <button id="balanceToggle" class="eye-button" aria-label="Hide balance">
             <svg viewBox="0 0 24 24">
-              <path d="M7 3h10a2 2 0 0 1 2 2v14H5V5a2 2 0 0 1 2-2Z"/>
-              <path d="M9 7h6M9 11h6M9 15h3"/>
+              <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/>
+              <circle cx="12" cy="12" r="2.5"/>
             </svg>
-          </span>
-          <span>Data</span>
-        </button>
-
-        <button class="service-card">
-          <span class="service-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M7 3h10v18H7z"/>
-              <path d="M10 6h4M10 18h4"/>
-            </svg>
-          </span>
-          <span>Airtime</span>
-        </button>
-
-        <button class="service-card">
-          <span class="service-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M3 9h18M5 9v9h14V9M4 18h16"/>
-              <path d="M7 6h10"/>
-            </svg>
-          </span>
-          <span>Betting</span>
-        </button>
-
-        <button class="service-card">
-          <span class="service-icon">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="5" width="18" height="14" rx="2"/>
-              <path d="M7 16h4M14 16h3"/>
-            </svg>
-          </span>
-          <span>TV</span>
-        </button>
-
-        <button class="service-card">
-          <span class="service-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 3v18M7 7h8.5a3 3 0 0 1 0 6H8.5a3 3 0 0 0 0 6H17"/>
-            </svg>
-          </span>
-          <span>Loans</span>
-        </button>
-
-        <button class="service-card">
-          <span class="service-icon">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="6" width="18" height="13" rx="2"/>
-              <path d="M3 10h18M16 14h2"/>
-            </svg>
-          </span>
-          <span>Wallet</span>
-        </button>
-
-        <button class="service-card referral-card">
-          <span class="service-icon">
-            <svg viewBox="0 0 24 24">
-              <circle cx="8" cy="8" r="3"/>
-              <circle cx="16" cy="16" r="3"/>
-              <path d="m10.5 10.5 3 3"/>
-            </svg>
-          </span>
-          <span>Referral</span>
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- RECENT ACTIVITY -->
-    <section class="section activity-section">
-
-      <div class="section-heading activity-heading">
-        <h2>Recent activity</h2>
-        <button>See all</button>
-      </div>
-
-      <div class="activity-list">
-
-        <div class="activity">
-          <div class="activity-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M7 3h10a2 2 0 0 1 2 2v14H5V5a2 2 0 0 1 2-2Z"/>
-            </svg>
-          </div>
-
-          <div class="activity-info">
-            <strong>MTN Data</strong>
-            <span>Today · 4:12 PM</span>
-          </div>
-
-          <strong class="amount negative">−₦2,500</strong>
+          </button>
         </div>
 
+        <div id="balance" class="balance">₦128,400</div>
 
-        <div class="activity">
-          <div class="activity-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5v14"/>
-            </svg>
-          </div>
-
-          <div class="activity-info">
-            <strong>Wallet funding</strong>
-            <span>Today · 2:30 PM</span>
-          </div>
-
-          <strong class="amount positive">+₦20,000</strong>
-        </div>
-
-
-        <div class="activity">
-          <div class="activity-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M4 8h16M4 16h16M7 5v14"/>
-            </svg>
-          </div>
-
-          <div class="activity-info">
-            <strong>Bet9ja funding</strong>
-            <span>Yesterday · 8:21 PM</span>
-          </div>
-
-          <strong class="amount negative">−₦5,000</strong>
-        </div>
-
-      </div>
-
-     </section>
-
- <!-- ADD MONEY SECTION -->
-       <!-- ADD MONEY SECTION -->
-    <section id="addMoneySection" style="display: none;">
-
-      <h2>Add money</h2>
-      <p>Fund your Veyra wallet using a bank transfer.</p>
-
-      <div class="deposit-card">
-
-        <h3>Bank transfer</h3>
-        <p>Transfer to the bank account displayed below, then submit your payment details for manual verification.</p>
-
-        <div class="bank-details">
-          <p><strong>Bank name</strong></p>
-          <p id="depositBankName">Bank details coming soon</p>
-
-          <p><strong>Account name</strong></p>
-          <p id="depositAccountName">Veyra</p>
-
-          <p><strong>Account number</strong></p>
-          <p id="depositAccountNumber">Not configured yet</p>
-        </div>
-
-        <form id="depositForm">
-
-          <label for="depositAmount">Amount (₦)</label>
-          <input
-            id="depositAmount"
-            name="depositAmount"
-            type="number"
-            min="1200"
-            step="1"
-            placeholder="Enter amount (minimum ₦1,200)"
-            required
-          >
-
-          <label for="depositProof">Transfer receipt / proof</label>
-          <input
-            id="depositProof"
-            name="depositProof"
-            type="file"
-            accept="image/*,.pdf"
-            required
-          >
-
-          <p id="depositMessage" role="status" style="display: none;"></p>
-
-          <button type="submit" class="primary-button">
-            Submit deposit for approval
+        <div class="balance-actions">
+          <button class="primary-button">
+            <span class="plus">+</span>
+            Add money
           </button>
 
-        </form>
+          <button class="secondary-button">Withdraw</button>
+        </div>
+      </section>
 
-        <p>Your deposit will remain pending until Veyra verifies and approves your payment.</p>
+      <!-- SERVICES -->
+      <section class="section">
+        <div class="section-heading">
+          <h2>Services</h2>
+        </div>
 
-      </div>
+        <div class="service-grid">
+          <button class="service-card">
+            <span class="service-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 3h10a2 2 0 0 1 2 2v14H5V5a2 2 0 0 1 2-2Z"/>
+                <path d="M9 7h6M9 11h6M9 15h3"/>
+              </svg>
+            </span>
+            <span>Data</span>
+          </button>
 
-    </section>
+          <button class="service-card">
+            <span class="service-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 3h10v18H7z"/>
+                <path d="M10 6h4M10 18h4"/>
+              </svg>
+            </span>
+            <span>Airtime</span>
+          </button>
 
-    
-<!-- DEPOSIT SUCCESS SCREEN -->
-<section id="depositSuccessSection" style="display: none; min-height: 75vh; background: #ffffff; padding: 48px 24px 32px; text-align: center; box-sizing: border-box;">
+          <button class="service-card">
+            <span class="service-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 9h18M5 9v9h14V9M4 18h16"/>
+                <path d="M7 6h10"/>
+              </svg>
+            </span>
+            <span>Betting</span>
+          </button>
 
-  <div style="max-width: 380px; margin: 0 auto; padding-top: 35px;">
+          <button class="service-card">
+            <span class="service-icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                <path d="M7 16h4M14 16h3"/>
+              </svg>
+            </span>
+            <span>TV</span>
+          </button>
 
-    <div style="width: 82px; height: 82px; border-radius: 50%; background: #E5F7EB; color: #22A447; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-size: 48px; font-weight: 400;">
-      ✓
-    </div>
+          <button class="service-card">
+            <span class="service-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3v18M7 7h8.5a3 3 0 0 1 0 6H8.5a3 3 0 0 0 0 6H17"/>
+              </svg>
+            </span>
+            <span>Loans</span>
+          </button>
 
-    <h2 style="font-size: 27px; letter-spacing: -0.8px; color: #171717; margin: 0 0 12px; font-weight: 700;">
-      Request submitted
-    </h2>
+          <button class="service-card">
+            <span class="service-icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="6" width="18" height="13" rx="2"/>
+                <path d="M3 10h18M16 14h2"/>
+              </svg>
+            </span>
+            <span>Wallet</span>
+          </button>
 
-    <p style="font-size: 15px; line-height: 1.7; color: #777777; margin: 0 auto 30px; max-width: 310px;">
-      Your deposit request has been submitted successfully. We'll verify your payment and update your wallet once approved.
-    </p>
+          <button class="service-card referral-card">
+            <span class="service-icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="8" cy="8" r="3"/>
+                <circle cx="16" cy="16" r="3"/>
+                <path d="m10.5 10.5 3 3"/>
+              </svg>
+            </span>
+            <span>Referral</span>
+          </button>
+        </div>
+      </section>
 
-    <div style="background: #F7F7F7; border-radius: 18px; padding: 18px; margin-bottom: 26px;">
-      <p style="font-size: 11px; letter-spacing: 1px; color: #888888; margin: 0 0 8px;">
-        DEPOSIT STATUS
-      </p>
-      <p style="font-size: 15px; font-weight: 600; color: #A77924; margin: 0;">
-        Pending verification
-      </p>
-    </div>
+      <!-- RECENT ACTIVITY -->
+      <section class="section activity-section">
+        <div class="section-heading activity-heading">
+          <h2>Recent activity</h2>
+          <button>See all</button>
+        </div>
 
-    <button id="depositSuccessDone" type="button" style="width: 100%; border: none; border-radius: 16px; padding: 16px; background: #A68A7D; color: #ffffff; font-size: 16px; font-weight: 600; cursor: pointer;">
-      Done
-    </button>
+        <div class="activity-list">
+          <div class="activity">
+            <div class="activity-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 3h10a2 2 0 0 1 2 2v14H5V5a2 2 0 0 1 2-2Z"/>
+              </svg>
+            </div>
 
-    <p style="font-size: 11px; letter-spacing: 1.5px; color: #AAAAAA; margin-top: 35px;">
-      VEYRA · INTELLIGENCE, REFINED.
-    </p>
+            <div class="activity-info">
+              <strong>MTN Data</strong>
+              <span>Today · 4:12 PM</span>
+            </div>
+
+            <strong class="amount negative">−₦2,500</strong>
+          </div>
+
+          <div class="activity">
+            <div class="activity-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5v14"/>
+              </svg>
+            </div>
+
+            <div class="activity-info">
+              <strong>Wallet funding</strong>
+              <span>Today · 2:30 PM</span>
+            </div>
+
+            <strong class="amount positive">+₦20,000</strong>
+          </div>
+
+          <div class="activity">
+            <div class="activity-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 8h16M4 16h16M7 5v14"/>
+              </svg>
+            </div>
+
+            <div class="activity-info">
+              <strong>Bet9ja funding</strong>
+              <span>Yesterday · 8:21 PM</span>
+            </div>
+
+            <strong class="amount negative">−₦5,000</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADD MONEY -->
+      <section id="addMoneySection" style="display: none;">
+        <h2>Add money</h2>
+        <p>Fund your Veyra wallet using a bank transfer.</p>
+
+        <div class="deposit-card">
+          <h3>Bank transfer</h3>
+          <p>Transfer to the bank account displayed below, then submit your payment details for manual verification.</p>
+
+          <div class="bank-details">
+            <p><strong>Bank name</strong></p>
+            <p id="depositBankName">Bank details coming soon</p>
+
+            <p><strong>Account name</strong></p>
+            <p id="depositAccountName">Veyra</p>
+
+            <p><strong>Account number</strong></p>
+            <p id="depositAccountNumber">Not configured yet</p>
+          </div>
+
+          <form id="depositForm">
+            <label for="depositAmount">Amount (₦)</label>
+            <input
+              id="depositAmount"
+              name="depositAmount"
+              type="number"
+              min="1200"
+              step="1"
+              placeholder="Enter amount (minimum ₦1,200)"
+              required
+            >
+
+            <label for="depositProof">Transfer receipt / proof</label>
+            <input
+              id="depositProof"
+              name="depositProof"
+              type="file"
+              accept="image/*,.pdf"
+              required
+            >
+
+            <p id="depositMessage" role="status" style="display: none;"></p>
+
+            <button type="submit" class="primary-button">
+              Submit deposit for approval
+            </button>
+          </form>
+
+          <p>Your deposit will remain pending until Veyra verifies and approves your payment.</p>
+        </div>
+      </section>
+
+      <!-- DEPOSIT SUCCESS -->
+      <section id="depositSuccessSection" style="display: none; min-height: 75vh; background: #ffffff; padding: 48px 24px 32px; text-align: center; box-sizing: border-box;">
+        <div style="max-width: 380px; margin: 0 auto; padding-top: 35px;">
+          <div style="width: 82px; height: 82px; border-radius: 50%; background: #E5F7EB; color: #22A447; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-size: 48px; font-weight: 400;">
+            ✓
+          </div>
+
+          <h2 style="font-size: 27px; letter-spacing: -0.8px; color: #171717; margin: 0 0 12px; font-weight: 700;">
+            Request submitted
+          </h2>
+
+          <p style="font-size: 15px; line-height: 1.7; color: #777777; margin: 0 auto 30px; max-width: 310px;">
+            Your deposit request has been submitted successfully. We'll verify your payment and update your wallet once approved.
+          </p>
+
+          <div style="background: #F7F7F7; border-radius: 18px; padding: 18px; margin-bottom: 26px;">
+            <p style="font-size: 11px; letter-spacing: 1px; color: #888888; margin: 0 0 8px;">
+              DEPOSIT STATUS
+            </p>
+            <p style="font-size: 15px; font-weight: 600; color: #A77924; margin: 0;">
+              Pending verification
+            </p>
+          </div>
+
+          <button id="depositSuccessDone" type="button" style="width: 100%; border: none; border-radius: 16px; padding: 16px; background: #A68A7D; color: #ffffff; font-size: 16px; font-weight: 600; cursor: pointer;">
+            Done
+          </button>
+
+          <p style="font-size: 11px; letter-spacing: 1.5px; color: #AAAAAA; margin-top: 35px;">
+            VEYRA · INTELLIGENCE, REFINED.
+          </p>
+        </div>
+      </section>
+
+      <!-- PROFILE -->
+      <section id="profileSection" style="display: none;">
+        <h2>Profile</h2>
+
+        <div class="profile-card">
+          <div class="profile-avatar" id="profileAvatar">--</div>
+          <h3 id="profileName">Loading...</h3>
+          <p id="profileEmail">Loading...</p>
+        </div>
+      </section>
+
+      <!-- WALLET -->
+      <section id="walletSection" style="display: none;">
+        <h2>Wallet</h2>
+
+        <div class="wallet-dashboard">
+          <div class="wallet-balance-card">
+            <div class="wallet-balance-label">Available balance</div>
+            <div class="wallet-balance-amount">₦0.00</div>
+          </div>
+
+          <div class="wallet-pending-card">
+            <div class="wallet-balance-label">Pending balance</div>
+            <div class="wallet-pending-amount">₦0.00</div>
+            <p>Funds currently being processed.</p>
+          </div>
+        </div>
+
+        <div class="wallet-actions">
+          <button class="primary-button" id="walletAddMoneyButton">
+            + Add money
+          </button>
+
+          <button class="secondary-button" id="walletWithdrawButton">
+            Withdraw
+          </button>
+        </div>
+
+        <div class="wallet-history">
+          <h3>Transaction history</h3>
+
+          <div class="wallet-empty-state">
+            <p>No transactions yet.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" id="homeNavButton">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 10.5 12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5h-5v-6h-5v6h-5A1.5 1.5 0 0 1 3 19.5z"/>
+        </svg>
+        <span>Home</span>
+      </button>
+
+      <button class="nav-item" id="walletNavButton">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="M3 10h18"/>
+        </svg>
+        <span>Wallet</span>
+      </button>
+
+      <button class="nav-item">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 3h12v18H6z"/>
+          <path d="M9 7h6M9 11h6M9 15h4"/>
+        </svg>
+        <span>Orders</span>
+      </button>
+
+      <button class="nav-item">
+        <svg viewBox="0 0 24 24">
+          <circle cx="8" cy="8" r="3"/>
+          <circle cx="16" cy="16" r="3"/>
+          <path d="m10.5 10.5 3 3"/>
+        </svg>
+        <span>Referral</span>
+      </button>
+
+      <button class="nav-item" id="profileNavButton">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="8" r="3"/>
+          <path d="M5 21c0-4 3-6 7-6s7 2 7 6"/>
+        </svg>
+        <span>Profile</span>
+      </button>
+    </nav>
 
   </div>
-</section>
-<!-- END DEPOSIT SUCCESS SCREEN -->
 
-
-    <!-- PROFILE SECTION -->
-    <section id="profileSection" style="display: none;">
-
-      <h2>Profile</h2>
-
-      <div class="profile-card">
-        <div class="profile-avatar" id="profileAvatar">--</div>
-
-        <h3 id="profileName">Loading...</h3>
-        <p id="profileEmail">Loading...</p>
-      </div>
-
-    </section>
-
-   <!-- WALLET SECTION -->
-<section id="walletSection" style="display: none;">
-
-  <h2>Wallet</h2>
-
-  <div class="wallet-dashboard">
-
-    <div class="wallet-balance-card">
-      <div class="wallet-balance-label">Available balance</div>
-      <div class="wallet-balance-amount">₦0.00</div>
-    </div>
-
-    <div class="wallet-pending-card">
-      <div class="wallet-balance-label">Pending balance</div>
-      <div class="wallet-pending-amount">₦0.00</div>
-      <p>Funds currently being processed.</p>
-    </div>
-
-  </div>
-
-  <div class="wallet-actions">
-    <button class="primary-button" id="walletAddMoneyButton">
-      + Add money
-    </button>
-
-    <button class="secondary-button" id="walletWithdrawButton">
-      Withdraw
-    </button>
-  </div>
-
-  <div class="wallet-history">
-
-    <h3>Transaction history</h3>
-
-    <div class="wallet-empty-state">
-      <p>No transactions yet.</p>
-    </div>
-
-  </div>
-
-</section>
-
-  </main>
-
-
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav">
-
-    <button class="nav-item active" id="homeNavButton">
-      <svg viewBox="0 0 24 24">
-        <path d="M3 10.5 12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5h-5v-6h-5v6h-5A1.5 1.5 0 0 1 3 19.5z"/>
-      </svg>
-      <span>Home</span>
-    </button>
-
-   <button class="nav-item" id="walletNavButton">
-  <svg viewBox="0 0 24 24">
-    <rect x="3" y="5" width="18" height="14" rx="2"/>
-    <path d="M3 10h18"/>
-  </svg>
-  <span>Wallet</span>
-</button>
-
-    <button class="nav-item">
-      <svg viewBox="0 0 24 24">
-        <path d="M6 3h12v18H6z"/>
-        <path d="M9 7h6M9 11h6M9 15h4"/>
-      </svg>
-      <span>Orders</span>
-    </button>
-
-    <button class="nav-item">
-      <svg viewBox="0 0 24 24">
-        <circle cx="8" cy="8" r="3"/>
-        <circle cx="16" cy="16" r="3"/>
-        <path d="m10.5 10.5 3 3"/>
-      </svg>
-      <span>Referral</span>
-    </button>
-
-    <button class="nav-item" id="profileNavButton">
-      <svg viewBox="0 0 24 24">
-        <circle cx="12" cy="8" r="3"/>
-        <path d="M5 21c0-4 3-6 7-6s7 2 7 6"/>
-      </svg>
-      <span>Profile</span>
-    </button>
-
-  </nav>
-
-</div>
-
-<script src="app.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
 </body>
 </html>
-
