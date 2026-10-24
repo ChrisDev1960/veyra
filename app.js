@@ -801,3 +801,356 @@ if (depositSuccessDone) {
     window.scrollTo(0, 0);
   });
 }
+
+
+/* ==========================================
+   VEYRA ADMIN DASHBOARD
+   ========================================== */
+
+(function setupVeyraAdminDashboard() {
+  const app = document.querySelector(".app");
+  const main = document.querySelector("main");
+  const topActions = document.querySelector(".top-actions");
+  const bottomNav = document.querySelector(".bottom-nav");
+
+  if (!app || !main || !topActions) {
+    console.error("Veyra admin: Required app elements were not found.");
+    return;
+  }
+
+  // Create the dashboard without replacing existing HTML.
+  const dashboard = document.createElement("section");
+  dashboard.id = "adminDashboardSection";
+  dashboard.style.cssText =
+    "display:none;padding:20px 16px 100px;max-width:900px;margin:0 auto;";
+
+  dashboard.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+      <div>
+        <h2 style="margin-bottom:5px;">Admin Dashboard</h2>
+        <p style="margin-top:0;color:#777;">Manage deposit requests</p>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button type="button" id="adminRefreshButton" class="secondary-button">
+          Refresh
+        </button>
+        <button type="button" id="adminCloseButton" class="secondary-button">
+          Close
+        </button>
+      </div>
+    </div>
+
+    <p id="adminDashboardMessage" role="status" style="margin:16px 0;"></p>
+    <div id="adminDepositList"></div>
+  `;
+
+  if (bottomNav && bottomNav.parentNode === app) {
+    app.insertBefore(dashboard, bottomNav);
+  } else {
+    app.appendChild(dashboard);
+  }
+
+  const adminButton = document.createElement("button");
+  adminButton.type = "button";
+  adminButton.id = "openAdminDashboardButton";
+  adminButton.textContent = "Admin";
+  adminButton.className = "secondary-button";
+  adminButton.style.display = "none";
+  topActions.appendChild(adminButton);
+
+  const message = dashboard.querySelector("#adminDashboardMessage");
+  const list = dashboard.querySelector("#adminDepositList");
+  const refreshButton = dashboard.querySelector("#adminRefreshButton");
+  const closeButton = dashboard.querySelector("#adminCloseButton");
+
+  function showAdminMessage(text, success = false) {
+    message.textContent = text;
+    message.style.color = success ? "#16803c" : "#555";
+  }
+
+  function hideDashboard() {
+    dashboard.style.display = "none";
+  }
+
+  function openDashboard() {
+    document.querySelectorAll("main > section").forEach((section) => {
+      section.style.display = "none";
+    });
+
+    dashboard.style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    loadDepositRequests();
+  }
+
+  adminButton.addEventListener("click", () => {
+    if (dashboard.style.display === "block") {
+      hideDashboard();
+
+      if (typeof showHomeSection === "function") {
+        showHomeSection();
+      }
+    } else {
+      openDashboard();
+    }
+  });
+
+  closeButton.addEventListener("click", () => {
+    hideDashboard();
+
+    if (typeof showHomeSection === "function") {
+      showHomeSection();
+    }
+  });
+
+  refreshButton.addEventListener("click", loadDepositRequests);
+
+  // Hide the dashboard when the user switches to another app section.
+  [
+    "homeNavButton",
+    "walletNavButton",
+    "profileNavButton"
+  ].forEach((id) => {
+    document.getElementById(id)?.addEventListener("click", hideDashboard);
+  });
+
+  async function checkAdminAccess() {
+    const { data: sessionData } =
+      await supabaseClient.auth.getSession();
+
+    if (!sessionData.session) {
+      adminButton.style.display = "none";
+      hideDashboard();
+      return;
+    }
+
+    const { data, error } =
+      await supabaseClient.rpc("is_veyra_admin");
+
+    if (error || data !== true) {
+      adminButton.style.display = "none";
+      hideDashboard();
+      return;
+    }
+
+    adminButton.style.display = "inline-block";
+  }
+
+  async function loadDepositRequests() {
+    list.replaceChildren();
+    showAdminMessage("Loading deposit requests...");
+
+    const { data: requests, error } = await supabaseClient
+      .from("deposit_requests")
+      .select("id,user_id,amount,proof_path,status,created_at,admin_note")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Admin deposits error:", error);
+      showAdminMessage(
+        "Could not load deposits. Check your admin access and Supabase policies."
+      );
+      return;
+    }
+
+    if (!requests || requests.length === 0) {
+      showAdminMessage("No deposit requests yet.", true);
+      return;
+    }
+
+    // Load profile names where available.
+    const userIds = [...new Set(requests.map((item) => item.user_id))];
+    const profilesById = {};
+
+    const { data: profiles, error: profileError } = await supabaseClient
+      .from("profile")
+      .select("id,username,email,first_name,last_name")
+      .in("id", userIds);
+
+    if (!profileError && profiles) {
+      profiles.forEach((profile) => {
+        profilesById[profile.id] = profile;
+      });
+    }
+
+    showAdminMessage(`${requests.length} deposit request(s) found.`);
+
+    for (const request of requests) {
+      const profile = profilesById[request.user_id];
+      const card = document.createElement("article");
+
+      card.style.cssText =
+        "background:#fff;border:1px solid #e5e1dc;border-radius:16px;padding:16px;margin:14px 0;box-shadow:0 3px 12px rgba(0,0,0,.04);";
+
+      const title = document.createElement("h3");
+      title.textContent =
+        profile?.username
+          ? `@${profile.username}`
+          : `User ${request.user_id.slice(0, 8)}`;
+      title.style.marginTop = "0";
+
+      const details = document.createElement("p");
+      details.style.cssText = "line-height:1.8;overflow-wrap:anywhere;";
+      details.textContent =
+        `Amount: ₦${Number(request.amount).toLocaleString("en-NG", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        })}\n` +
+        `Email: ${profile?.email || "Not available"}\n` +
+        `Submitted: ${new Date(request.created_at).toLocaleString()}\n` +
+        `Status: ${request.status}`;
+
+      details.style.whiteSpace = "pre-line";
+
+      const receiptButton = document.createElement("button");
+      receiptButton.type = "button";
+      receiptButton.className = "secondary-button";
+      receiptButton.textContent = "Open payment receipt";
+      receiptButton.style.marginRight = "8px";
+
+      receiptButton.addEventListener("click", async () => {
+        receiptButton.disabled = true;
+        receiptButton.textContent = "Opening receipt...";
+
+        try {
+          const { data, error: receiptError } =
+            await supabaseClient.storage
+              .from("deposit-proofs")
+              .createSignedUrl(request.proof_path, 300);
+
+          if (receiptError) throw receiptError;
+
+          if (!data?.signedUrl) {
+            throw new Error("Receipt link could not be created.");
+          }
+
+          window.open(data.signedUrl, "_blank", "noopener,noreferrer");
+        } catch (error) {
+          console.error("Receipt access error:", error);
+          alert(error.message || "Unable to open this receipt.");
+        } finally {
+          receiptButton.disabled = false;
+          receiptButton.textContent = "Open payment receipt";
+        }
+      });
+
+      card.append(title, details, receiptButton);
+
+      if (request.admin_note) {
+        const note = document.createElement("p");
+        note.textContent = `Admin note: ${request.admin_note}`;
+        card.appendChild(note);
+      }
+
+      if (request.status === "pending") {
+        const approveButton = document.createElement("button");
+        approveButton.type = "button";
+        approveButton.textContent = "Approve deposit";
+        approveButton.style.cssText =
+          "background:#16803c;color:white;border:0;border-radius:12px;padding:12px;margin:10px 8px 0 0;cursor:pointer;";
+
+        const rejectButton = document.createElement("button");
+        rejectButton.type = "button";
+        rejectButton.textContent = "Reject deposit";
+        rejectButton.style.cssText =
+          "background:#b42318;color:white;border:0;border-radius:12px;padding:12px;margin-top:10px;cursor:pointer;";
+
+        approveButton.addEventListener("click", async () => {
+          const confirmed = window.confirm(
+            `Approve ₦${Number(request.amount).toLocaleString("en-NG")} for this user?\n\nOnly approve after verifying the actual payment.`
+          );
+
+          if (!confirmed) return;
+
+          const note = window.prompt("Optional admin note:", "");
+          if (note === null) return;
+
+          approveButton.disabled = true;
+          rejectButton.disabled = true;
+          showAdminMessage("Approving deposit...");
+
+          try {
+            const { error: approvalError } = await supabaseClient.rpc(
+              "approve_deposit",
+              {
+                p_deposit_id: request.id,
+                p_admin_note: note.trim() || null
+              }
+            );
+
+            if (approvalError) throw approvalError;
+
+            showAdminMessage("Deposit approved. Refreshing requests...", true);
+            await loadDepositRequests();
+          } catch (error) {
+            console.error("Deposit approval error:", error);
+            showAdminMessage(
+              error.message || "Approval failed. No success was confirmed."
+            );
+            approveButton.disabled = false;
+            rejectButton.disabled = false;
+          }
+        });
+
+        rejectButton.addEventListener("click", async () => {
+          const confirmed = window.confirm(
+            "Reject this deposit request?"
+          );
+
+          if (!confirmed) return;
+
+          const note = window.prompt("Reason for rejection:", "");
+          if (note === null) return;
+
+          if (!note.trim()) {
+            alert("Please enter a reason for rejection.");
+            return;
+          }
+
+          approveButton.disabled = true;
+          rejectButton.disabled = true;
+          showAdminMessage("Rejecting deposit...");
+
+          try {
+            const { error: rejectionError } = await supabaseClient.rpc(
+              "reject_deposit",
+              {
+                p_deposit_id: request.id,
+                p_admin_note: note.trim()
+              }
+            );
+
+            if (rejectionError) throw rejectionError;
+
+            showAdminMessage("Deposit rejected. Refreshing requests...", true);
+            await loadDepositRequests();
+          } catch (error) {
+            console.error("Deposit rejection error:", error);
+            showAdminMessage(
+              error.message || "Rejection failed. Please try again."
+            );
+            approveButton.disabled = false;
+            rejectButton.disabled = false;
+          }
+        });
+
+        card.append(approveButton, rejectButton);
+      }
+
+      list.appendChild(card);
+    }
+  }
+
+  // Check access on page load, login, and logout.
+  supabaseClient.auth.getSession().then(() => checkAdminAccess());
+
+  supabaseClient.auth.onAuthStateChange((event) => {
+    if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
+      setTimeout(checkAdminAccess, 0);
+    }
+
+    if (event === "SIGNED_OUT") {
+      adminButton.style.display = "none";
+      hideDashboard();
+    }
+  });
+})();
