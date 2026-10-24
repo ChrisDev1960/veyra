@@ -1172,3 +1172,570 @@ a:focus-visible {
     animation-iteration-count: 1 !important;
   }
 }
+
+
+/* ==========================================
+   VEYRA — iOS INSPIRED DESIGN SYSTEM
+   Cream • Sky Blue • Soft Colour Accents
+   ========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg: #F8F7F2;
+  --surface: #FFFFFF;
+  --surface-secondary: #F0F4F7;
+
+  --text: #202B38;
+  --text-secondary: #788493;
+  --text-muted: #9AA4AF;
+
+  --primary: #69B9EF;
+  --primary-dark: #2789CB;
+  --primary-light: #E4F3FD;
+  --primary-tint: #F0F8FE;
+
+  --lavender: #EEE9FC;
+  --lavender-ink: #7964B5;
+  --sage: #E4F2E8;
+  --sage-ink: #438361;
+  --peach: #FBE9DF;
+  --peach-ink: #B96E4C;
+
+  --border: #E8EBED;
+  --success: #348565;
+  --danger: #CF5D63;
+  --warning: #B9893C;
+
+  --radius-sm: 13px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 30px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 4px 18px rgba(39, 55, 70, .045);
+  --shadow-card: 0 8px 28px rgba(39, 55, 70, .055);
+}
+
+/* Base */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Nunito", "Arial Rounded MT Bold",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  background: var(--bg);
+  color: var(--text);
+}
+
+h1, h2, h3, h4 {
+  color: var(--text);
+  font-weight: 800;
+  letter-spacing: -.035em;
+}
+
+/* Header */
+
+.app-header,
+.header,
+.top-bar {
+  margin-bottom: 28px;
+}
+
+.brand,
+.brand-name,
+.auth-brand {
+  color: var(--text);
+  font-weight: 900;
+  letter-spacing: -.055em;
+}
+
+.brand span,
+.brand-name span,
+.auth-brand span {
+  color: var(--primary-dark);
+}
+
+.icon-button,
+.notification-button,
+.header button {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Balance: calm, premium blue */
+
+.balance-card,
+.wallet-balance-card {
+  position: relative;
+  overflow: hidden;
+  padding: 26px 23px;
+  border: 0;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #75C5F4 0%, #4AA8E5 100%);
+  color: #FFFFFF;
+  box-shadow: 0 12px 30px rgba(64, 159, 219, .19);
+}
+
+.balance-card::before,
+.wallet-balance-card::before {
+  content: "";
+  position: absolute;
+  top: -75px;
+  right: -35px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.15);
+  pointer-events: none;
+}
+
+.balance-card::after,
+.wallet-balance-card::after {
+  content: "";
+  position: absolute;
+  right: 65px;
+  bottom: -100px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.09);
+  pointer-events: none;
+}
+
+.balance-card > *,
+.wallet-balance-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.balance-label,
+.balance-card .label,
+.wallet-balance-card .label {
+  color: rgba(255,255,255,.88);
+}
+
+.balance-amount,
+.balance-card h2,
+.wallet-balance-card h2,
+.wallet-balance-card .amount {
+  color: #FFFFFF;
+  font-weight: 900;
+  letter-spacing: -.05em;
+  overflow-wrap: anywhere;
+}
+
+/* Buttons */
+
+.btn,
+button.primary,
+.primary-button,
+.auth-submit {
+  min-height: 49px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--primary-dark);
+  color: #FFFFFF;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(39,137,203,.12);
+  transition: transform .18s ease, background .18s ease;
+}
+
+.btn:hover,
+button.primary:hover,
+.primary-button:hover,
+.auth-submit:hover {
+  background: #1878B7;
+}
+
+.btn:active,
+button.primary:active,
+.primary-button:active,
+.auth-submit:active {
+  transform: scale(.98);
+}
+
+.btn-secondary,
+.secondary-button {
+  min-height: 46px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 800;
+}
+
+/* Section headings */
+
+.section-heading,
+.section-header {
+  margin-bottom: 16px;
+}
+
+.section-heading h2,
+.section-header h2,
+.section h2 {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.section-heading p,
+.section-header p {
+  color: var(--text-secondary);
+}
+
+/* Services: soft icon tiles */
+
+.service-grid {
+  gap: 19px 11px;
+}
+
+.service-card {
+  gap: 9px;
+  color: var(--text);
+}
+
+.service-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 59px;
+  height: 59px;
+  border: 1px solid rgba(40,60,80,.035);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--primary-dark);
+  box-shadow: var(--shadow-soft);
+  font-size: 23px;
+  transition: transform .18s ease, background .18s ease;
+}
+
+.service-card:hover .service-icon {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.service-card span:last-child,
+.service-card .service-name {
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* Real icon artwork: styles SVGs when present */
+
+.service-icon svg,
+.nav-item svg,
+.icon-button svg,
+.notification-button svg,
+.settings-icon svg,
+.setting-icon svg {
+  display: block;
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Activity and transaction lists */
+
+.activity-list {
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.activity,
+.activity-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #F0F0ED;
+}
+
+.activity-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.activity-details h3,
+.activity-info h3,
+.activity-title {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.activity-details p,
+.activity-info p,
+.activity-date {
+  color: var(--text-secondary);
+}
+
+/* Cards and wallet sections */
+
+.card,
+.panel,
+.settings-card,
+.deposit-card,
+.wallet-pending-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.deposit-card,
+.settings-card {
+  padding: 20px;
+}
+
+.wallet-actions {
+  gap: 12px;
+}
+
+/* Forms */
+
+.form-group label,
+label {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+select,
+textarea {
+  min-height: 49px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: #FDFDFC;
+  color: var(--text);
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(105,185,239,.17);
+}
+
+/* Settings rows: clean iOS-style arrangement */
+
+.settings-list {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.settings-row,
+.setting-row,
+.settings-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 66px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #F0F0ED;
+  background: var(--surface);
+}
+
+.settings-row:last-child,
+.setting-row:last-child,
+.settings-item:last-child {
+  border-bottom: 0;
+}
+
+.settings-icon,
+.setting-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 13px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.settings-icon svg,
+.setting-icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.settings-row .setting-title,
+.setting-row .setting-title,
+.settings-item .setting-title {
+  flex: 1;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.settings-row .setting-description,
+.setting-row .setting-description,
+.settings-item .setting-description {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.settings-row .chevron,
+.setting-row .chevron,
+.settings-item .chevron {
+  color: #A5AFB8;
+}
+
+/* Bottom navigation */
+
+.bottom-nav {
+  border: 1px solid rgba(232,235,237,.95);
+  border-bottom: 0;
+  border-radius: 23px 23px 0 0;
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 -5px 24px rgba(39,55,70,.045);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.nav-item {
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.nav-item.active,
+.nav-item[aria-current="page"] {
+  border-radius: 15px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+/* Authentication screens */
+
+.auth-screen {
+  background:
+    radial-gradient(circle at 90% 8%, #E5F4FD 0, transparent 32%),
+    var(--bg);
+}
+
+.auth-card {
+  border: 1px solid rgba(232,235,237,.9);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.auth-card h1,
+.auth-card h2 {
+  font-weight: 900;
+}
+
+.auth-motto,
+.auth-card > p {
+  color: var(--text-secondary);
+}
+
+/* Status indicators */
+
+.status,
+.badge,
+.status-badge {
+  border-radius: var(--radius-pill);
+  font-weight: 800;
+}
+
+.status.completed,
+.status.success,
+.badge.success,
+.status-badge.success {
+  background: var(--sage);
+  color: var(--sage-ink);
+}
+
+.status.pending,
+.badge.pending,
+.status-badge.pending {
+  background: #FFF2D9;
+  color: #9A702B;
+}
+
+.status.failed,
+.status.error,
+.badge.error,
+.status-badge.failed {
+  background: #FCE8E8;
+  color: #B94C53;
+}
+
+/* Messages */
+
+.auth-message,
+#depositMessage {
+  border-radius: 14px;
+}
+
+.auth-message.success,
+#depositMessage.success {
+  background: var(--sage);
+  color: var(--sage-ink);
+}
+
+.auth-message.error,
+#depositMessage.error {
+  background: #FCE8E8;
+  color: #B94C53;
+}
+
+/* Smaller phones */
+
+@media (max-width: 380px) {
+  .service-icon {
+    width: 53px;
+    height: 53px;
+    border-radius: 18px;
+  }
+
+  .app {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
