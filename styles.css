@@ -1739,3 +1739,423 @@ textarea:focus {
     transition-duration: .01ms !important;
   }
 }
+
+/* ==========================================
+   VEYRA — REFINED iOS WALLET EXPERIENCE
+   ========================================== */
+
+:root {
+  --bg: #F2EFE5;
+  --surface: #FFFEFA;
+  --surface-soft: #EAE6D9;
+  --text: #20211F;
+  --muted: #85877F;
+  --border: rgba(40, 42, 37, .09);
+
+  --primary: #D7C58E;
+  --primary-dark: #927B3E;
+  --primary-soft: #F0E8D0;
+
+  --wallet: #20221F;
+  --wallet-muted: #B9BDB5;
+
+  --radius-md: 19px;
+  --radius-lg: 25px;
+  --radius-xl: 30px;
+}
+
+/* Page */
+
+html,
+body {
+  background: var(--bg) !important;
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont,
+    "SF Pro Rounded", "Arial Rounded MT Bold",
+    "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 22px 20px 125px;
+  overflow: visible;
+  background: var(--bg);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* Header and greeting */
+
+.app-header,
+.header,
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 23px;
+}
+
+.app-header h1,
+.header h1,
+.top-bar h1,
+.brand,
+.brand-name {
+  margin: 0;
+  color: var(--text);
+  font-size: 24px;
+  font-weight: 750;
+  letter-spacing: -0.8px;
+}
+
+.app-header p,
+.header p,
+.top-bar p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Round, tactile icon buttons */
+
+.icon-button,
+.notification-button,
+.header button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 3px 10px rgba(30, 30, 25, .035);
+}
+
+.icon-button svg,
+.notification-button svg,
+.header button svg,
+.service-icon svg,
+.nav-item svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Wallet card — dark and sophisticated */
+
+.balance-card,
+.wallet-balance-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 25px 23px 22px;
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 29px;
+  background: var(--wallet);
+  color: #FFFFFF;
+  box-shadow: 0 12px 28px rgba(29, 31, 27, .12);
+}
+
+.balance-card::before,
+.wallet-balance-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -90px;
+  right: -65px;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(215,197,142,.16);
+  border-radius: 50%;
+  background: rgba(215,197,142,.07);
+  pointer-events: none;
+}
+
+.balance-card::after,
+.wallet-balance-card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: 50px;
+  bottom: -145px;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.035);
+  pointer-events: none;
+}
+
+.balance-label,
+.balance-card .label,
+.wallet-balance-card .label {
+  color: var(--wallet-muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.balance-amount,
+.balance-card h2,
+.wallet-balance-card h2,
+.wallet-balance-card .amount {
+  color: #FFFFFF;
+  font-size: clamp(28px, 7vw, 36px);
+  font-weight: 750;
+  letter-spacing: -1.3px;
+  overflow-wrap: anywhere;
+}
+
+/* Wallet actions */
+
+.balance-card .btn,
+.balance-card .btn-secondary,
+.wallet-balance-card .btn,
+.wallet-balance-card .btn-secondary {
+  min-height: 44px;
+  padding: 11px 17px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.balance-card .btn,
+.wallet-balance-card .btn {
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: #24241F;
+  box-shadow: none;
+}
+
+.balance-card .btn-secondary,
+.wallet-balance-card .btn-secondary {
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.08);
+  color: #FFFFFF;
+}
+
+/* Section headings */
+
+.section,
+.dashboard-section {
+  margin-top: 29px;
+}
+
+.section-heading,
+.section-header {
+  margin-bottom: 15px;
+}
+
+.section-heading h2,
+.section-header h2,
+.section h2 {
+  font-size: 17px;
+  font-weight: 750;
+  letter-spacing: -.35px;
+}
+
+/* Services — rounded icon tiles */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px 12px;
+}
+
+.service-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  color: var(--text);
+}
+
+.service-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  border: 1px solid rgba(40,42,37,.045);
+  border-radius: 19px;
+  background: var(--surface);
+  color: #5D725E;
+  box-shadow: 0 4px 13px rgba(35,35,28,.035);
+  transition: transform .18s ease;
+}
+
+.service-card:nth-child(4n + 2) .service-icon {
+  color: #8B7441;
+}
+
+.service-card:nth-child(4n + 3) .service-icon {
+  color: #77709A;
+}
+
+.service-card:nth-child(4n) .service-icon {
+  color: #667E91;
+}
+
+.service-card:active .service-icon {
+  transform: scale(.94);
+}
+
+.service-card span:last-child,
+.service-card .service-name {
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 650;
+}
+
+/* Activity */
+
+.activity-list {
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: 23px;
+  background: var(--surface);
+  box-shadow: 0 4px 15px rgba(35,35,28,.025);
+}
+
+.activity,
+.activity-item {
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(40,42,37,.07);
+}
+
+.activity-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--surface-soft);
+  color: var(--text);
+}
+
+/* Floating iPhone-style navigation */
+
+.bottom-nav {
+  position: fixed;
+  z-index: 100;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 3px;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
+  border: 1px solid rgba(255,255,255,.8);
+  border-bottom: 0;
+  border-radius: 25px 25px 0 0;
+  background: rgba(255,254,250,.91);
+  box-shadow: 0 -6px 25px rgba(30,30,25,.045);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  min-height: 49px;
+  padding: 5px 2px;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  color: #92958E;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.nav-item.active,
+.nav-item[aria-current="page"] {
+  background: var(--primary-soft);
+  color: #796735;
+}
+
+.nav-item svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Forms and cards */
+
+.card,
+.panel,
+.settings-card,
+.deposit-card,
+.wallet-pending-card {
+  border: 1px solid var(--border);
+  border-radius: 23px;
+  background: var(--surface);
+  box-shadow: 0 4px 15px rgba(35,35,28,.025);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+select,
+textarea {
+  border-color: var(--border);
+  border-radius: 15px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #B6A46C;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(183,163,103,.15);
+}
+
+/* Status */
+
+.status,
+.badge,
+.status-badge {
+  border-radius: 999px;
+}
+
+.status.completed,
+.status.success,
+.badge.success,
+.status-badge.success {
+  background: #E4EEE3;
+  color: #47724C;
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 380px) {
+  .app {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .service-icon {
+    width: 51px;
+    height: 51px;
+  }
+}
