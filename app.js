@@ -550,7 +550,14 @@ function hideMainSections() {
   });
 }
 
+
 function showHomeSection() {
+  const successSection = byId("depositSuccessSection");
+
+  if (successSection) {
+    successSection.style.display = "none";
+  }
+
   hideMainSections();
 
   document.querySelectorAll("main > section").forEach((section) => {
@@ -558,7 +565,8 @@ function showHomeSection() {
       ![
         "profileSection",
         "walletSection",
-        "addMoneySection"
+        "addMoneySection",
+        "depositSuccessSection"
       ].includes(section.id)
     ) {
       section.style.display = "";
@@ -566,6 +574,7 @@ function showHomeSection() {
   });
 
   setActiveNav(homeNavButton);
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function showWalletSection() {
