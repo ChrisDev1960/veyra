@@ -14,18 +14,70 @@ function showMessage(element, message, success = false) {
 }
 
 // ==============================
-// BALANCE VISIBILITY
+// LIVE WALLET BALANCE
 // ==============================
 const balance = byId("balance");
 const balanceToggle = byId("balanceToggle");
-let balanceVisible = true;
+const walletBalanceAmount = document.querySelector(".wallet-balance-amount");
+const walletPendingAmount = document.querySelector(".wallet-pending-amount");
 
-if (balanceToggle && balance) {
-  balanceToggle.addEventListener("click", () => {
-    balanceVisible = !balanceVisible;
-    balance.textContent = balanceVisible ? "₦128,400" : "••••••••";
-    if (navigator.vibrate) navigator.vibrate(8);
-  });
+let balanceVisible = true;
+let currentWalletBalance = 0;
+let currentPendingBalance = 0;
+let walletCurrency = "NGN";
+
+function formatWalletAmount(amount) {
+  return new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: walletCurrency,
+    minimumFractionDigits: 2
+  }).format(amount);
+}
+
+function renderWalletBalance() {
+  const available = formatWalletAmount(currentWalletBalance);
+  const pending = formatWalletAmount(currentPendingBalance);
+  const hidden = "••••••••";
+
+  if (balance) {
+    balance.textContent = balanceVisible ? available : hidden;
+  }
+
+  if (walletBalanceAmount) {
+    walletBalanceAmount.textContent = balanceVisible ? available : hidden;
+  }
+
+  if (walletPendingAmount) {
+    walletPendingAmount.textContent = balanceVisible ? pending : hidden;
+  }
+}
+
+async function loadWalletData() {
+  const { data: userData, error: userError } =
+    await supabaseClient.auth.getUser();
+
+  if (userError || !userData.user) return;
+
+  const { data, error } = await supabaseClient
+    .from("wallets")
+    .select("currency, balance")
+    .eq("user_id", userData.user.id)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Veyra wallet loading error:", error);
+    return;
+  }
+
+  if (!data) {
+    console.error("Veyra: Wallet record not found for this account.");
+    return;
+  }
+
+  currentWalletBalance = Number(data.balance) || 0;
+  walletCurrency = data.currency || "NGN";
+
+  renderWalletBalance();
 }
 
 // ==============================
@@ -36,6 +88,14 @@ document.querySelectorAll("button").forEach((button) => {
     if (navigator.vibrate) navigator.vibrate(6);
   });
 });
+
+if (balanceToggle) {
+  balanceToggle.addEventListener("click", () => {
+    balanceVisible = !balanceVisible;
+    renderWalletBalance();
+    if (navigator.vibrate) navigator.vibrate(8);
+  });
+}
 
 // ==============================
 // REGISTRATION + USERNAME CHECK
@@ -306,6 +366,7 @@ if (loginForm) {
 
       showHomeSection();
       updateUserHeader();
+      await loadWalletData();
     } catch (error) {
       showMessage(
         loginMessage,
@@ -455,6 +516,7 @@ supabaseClient.auth.getSession().then(({ data, error }) => {
     if (registerScreen) registerScreen.style.display = "none";
     if (loginScreen) loginScreen.style.display = "none";
     if (appElement) appElement.style.display = "block";
+    loadWalletData();
   } else {
     if (registerScreen) registerScreen.style.display = "flex";
     if (loginScreen) loginScreen.style.display = "none";
@@ -475,6 +537,11 @@ if (logoutButton) {
       alert("Unable to log out. Please try again.");
       return;
     }
+
+    currentWalletBalance = 0;
+    currentPendingBalance = 0;
+    walletCurrency = "NGN";
+    renderWalletBalance();
 
     if (appElement) appElement.style.display = "none";
     if (loginScreen) loginScreen.style.display = "flex";
@@ -550,7 +617,6 @@ function hideMainSections() {
   });
 }
 
-
 function showHomeSection() {
   const successSection = byId("depositSuccessSection");
 
@@ -585,6 +651,7 @@ function showWalletSection() {
   }
 
   setActiveNav(walletNavButton);
+  loadWalletData();
 }
 
 function openAddMoney() {
@@ -670,8 +737,6 @@ if (addMoneySection && !byId("backToWalletButton")) {
 
   addMoneySection.insertBefore(backButton, addMoneySection.firstChild);
 }
-
-
 
 // ==============================
 // MANUAL DEPOSIT SUBMISSION
@@ -810,7 +875,6 @@ if (depositSuccessDone) {
     window.scrollTo(0, 0);
   });
 }
-
 
 /* ==========================================
    VEYRA ADMIN DASHBOARD
