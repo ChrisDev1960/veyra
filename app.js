@@ -88,6 +88,50 @@ async function loadWalletData() {
     walletCurrency
   );
 }
+async function loadWalletTransactions() {
+  const { data: userData, error: userError } =
+    await supabaseClient.auth.getUser();
+
+  if (userError || !userData.user) return;
+
+  const { data, error } = await supabaseClient
+    .from("wallet_transactions")
+    .select("id, type, amount, status, description, created_at")
+    .eq("user_id", userData.user.id)
+    .order("created_at", { ascending: false })
+    .limit(20);
+
+  if (error) {
+    console.error("Transaction history error:", error);
+    return;
+  }
+
+  const history = document.getElementById("transactionHistory");
+
+  if (!history) return;
+
+  if (!data || data.length === 0) {
+    history.innerHTML = "<p>No transactions yet.</p>";
+    return;
+  }
+
+  history.innerHTML = data.map(transaction => `
+    <div class="transaction-item">
+      <div>
+        <strong>${transaction.description || transaction.type}</strong>
+        <small>${new Date(transaction.created_at).toLocaleString()}</small>
+        <small>${transaction.status}</small>
+      </div>
+      <strong>
+        ${Number(transaction.amount).toLocaleString("en-NG", {
+          style: "currency",
+          currency: "NGN"
+        })}
+      </strong>
+    </div>
+  `).join("");
+}
+
 // ==============================
 // BUTTON VIBRATION
 // ==============================
