@@ -704,6 +704,7 @@ function showWalletSection() {
 
   setActiveNav(walletNavButton);
   loadWalletData();
+loadWalletTransactions();
 }
 
 function openAddMoney() {
