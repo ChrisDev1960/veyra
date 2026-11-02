@@ -1238,7 +1238,7 @@ if (depositSuccessDone) {
 
           try {
             const { error: rejectionError } = await supabaseClient.rpc(
-              "reject_deposits",
+              "reject_deposit",
               {
                 p_deposit_id: request.id,
                 p_admin_note: note.trim()
