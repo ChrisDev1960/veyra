@@ -1196,7 +1196,7 @@ if (depositSuccessDone) {
 
           try {
             const { error: approvalError } = await supabaseClient.rpc(
-              "approve_deposits",
+              "approve_deposit",
               {
                 p_deposit_id: request.id,
                 p_admin_note: note.trim() || null
