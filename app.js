@@ -1218,6 +1218,7 @@ if (depositSuccessDone) {
         });
 
         rejectButton.addEventListener("click", async () => {
+          console.log("VEYRA: Reject button clicked");
           const confirmed = window.confirm(
             "Reject this deposit request?"
           );
