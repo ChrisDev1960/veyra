@@ -340,7 +340,7 @@ if (forgotPasswordButton) {
       const { error } = await supabaseClient.auth.resetPasswordForEmail(
         email,
         {
-          redirectTo: "https://chrisdev1960.github.io/veyra/"
+          redirectTo: "https://silly-maamoul-50525a.netlify.app/"
         }
       );
 
