@@ -56,7 +56,10 @@ async function loadWalletData() {
   const { data: userData, error: userError } =
     await supabaseClient.auth.getUser();
 
-  if (userError || !userData.user) return;
+  if (userError || !userData.user) {
+    console.error("Veyra: Could not identify logged-in user.");
+    return;
+  }
 
   const { data, error } = await supabaseClient
     .from("wallets")
@@ -70,7 +73,7 @@ async function loadWalletData() {
   }
 
   if (!data) {
-    console.error("Veyra: Wallet record not found for this account.");
+    console.error("Veyra: Wallet record not found.");
     return;
   }
 
@@ -78,8 +81,13 @@ async function loadWalletData() {
   walletCurrency = data.currency || "NGN";
 
   renderWalletBalance();
-}
 
+  console.log(
+    "VEYRA LIVE WALLET:",
+    currentWalletBalance,
+    walletCurrency
+  );
+}
 // ==============================
 // BUTTON VIBRATION
 // ==============================
